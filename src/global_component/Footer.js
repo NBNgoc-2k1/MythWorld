@@ -1,33 +1,28 @@
-import { Copyright, Facebook, Instagram, YouTube } from '@mui/icons-material'
+import { faFacebookSquare, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import { faCopyright } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <div className="flex bg-secondary items-center justify-between">
-            <div className="flex flex-col ml-40">
+        <div className="flex bg-dark-grey items-center justify-between">
+            <div className="flex flex-col lg:ml-40">
                 <p className="text-footer"
                 >Myth World</p>
                 <div className="flex justify-between">
                     <button>
-                        <Facebook
-                            className="text-textBtn" fontSize="large"
-                        />
+                        <FontAwesomeIcon icon={faFacebookSquare} className="lg:text-4xl text-white" />
                     </button>
                     <button>
-                        <YouTube
-                            className="text-textBtn" fontSize="large"
-
-                        />
+                        <FontAwesomeIcon icon={faYoutube} size="2x" className="lg:text-4xl text-white" />
                     </button>
                     <button>
-                        <Instagram
-                            className="text-textBtn" fontSize="large"
-                        />
+                        <FontAwesomeIcon icon={faInstagram} size="2x" className="lg:text-4xl text-white" />
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col items-start justify-around my-10">
+            <div className="flex flex-col items-start justify-around lg:my-10">
                 <Link className="text-footer">
                     About us
                 </Link>
@@ -38,8 +33,8 @@ const Footer = () => {
                     Term and Privacy
                 </Link>
             </div>
-            <p className="text-footer mt-36 mr-20">
-                Copyright <Copyright /> 2022 All rights reserved
+            <p className="text-footer lg:mt-36 lg:mr-20">
+                Copyright <FontAwesomeIcon icon={faCopyright}/> 2022 All rights reserved
             </p>
         </div>
     )

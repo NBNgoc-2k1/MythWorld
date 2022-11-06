@@ -6,12 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary: '#936464',
-        secondary: '#474747',
-        button: '#649393',
-        textBtn: '#FFFFFF',
-        background: '#F5F5F5',
-        bar: '#D9D9D9'
+        brown: '#936464',
+        'dark-grey': '#474747',
+        teal: '#649393',
+        white: '#FFFFFF',
+        'light-silver': '#F5F5F5',
+        'dark-silvere': '#D9D9D9'
       }
     },
   },

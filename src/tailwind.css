@@ -7,6 +7,6 @@
         @apply text-2xl py-4 hover:underline hover:underline-offset-8 ;
     }
     .text-footer {
-        @apply text-2xl text-textBtn my-4
+        @apply text-2xl text-white my-4
     }
 }

@@ -1,7 +1,8 @@
 import { AppBar, Toolbar } from '@mui/material';
 import logo from '../assets/images/global_images/small_logo.png'
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import AppButton from './AppButton';
 
 function stringToColor(string) {
   let hash = 0;
@@ -44,27 +45,34 @@ const Header = (props) => {
 
   return (
     <AppBar color="primary" position="sticky">
-      <Toolbar >
-        <div className="flex ml-20">
+      <Toolbar>
+        <div className="flex lg:ml-20 cursor-pointer"
+          // onClick={}
+        >
           <img
             src={logo}
             alt="logo"
             className="w-16 h-16"
           />
-          <Link className="nav-item">
+          <p className="nav-item">
             Myth World
-          </Link>
+          </p>
         </div>
-        <div className="flex ml-auto">
-          <Link className="nav-item px-10" to="/">
+        <div className="hidden lg:flex ml-auto">
+          <NavLink className="nav-item lg:px-10" to="/"
+            
+          >
             Home
-          </Link>
-          <Link className="nav-item px-10" to="blogs">
+          </NavLink>
+          <NavLink className="nav-item lg:px-10" to="blogs">
             Blogs
-          </Link>
-          <Link className="nav-item px-10">
-            Login/Register
-          </Link>
+          </NavLink>
+          <NavLink className="nav-item lg:px-10" >
+            Create Blog
+          </NavLink>
+        </div>
+        <div>
+          <AppButton content="Login/Register"/>
         </div>
       </Toolbar>
     </AppBar>

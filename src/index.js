@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './Root'
 import { createTheme, ThemeProvider } from '@mui/material';
+import Home from './pages/home/screens/Home';
+import Error from './pages/error/Error';
 
 const theme = createTheme({
   palette: {
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
     path: '/',
     element: < Root />,
     children: [
-
+      {
+        path: '/',
+        errorElement: <Error /> ,
+        element: <Home />,
+      }
     ]
   }
 ])
