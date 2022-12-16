@@ -23,18 +23,21 @@ const Footer = () => {
                 </div>
             </div>
             <div className="flex flex-col items-start justify-around lg:my-10">
-                <Link className="text-footer">
+                <Link className="text-footer
+                hover:underline underline-offset-4 decoration-2">
                     About us
                 </Link>
-                <Link className="text-footer">
+                <Link className="text-footer
+                hover:underline underline-offset-4 decoration-2">
                     Help
                 </Link>
-                <Link className="text-footer">
+                <Link className="text-footer
+                hover:underline underline-offset-4 decoration-2">
                     Term and Privacy
                 </Link>
             </div>
             <p className="text-footer lg:mt-36 lg:mr-20">
-                Copyright <FontAwesomeIcon icon={faCopyright}/> 2022 All rights reserved
+                Copyright <FontAwesomeIcon icon={faCopyright} /> 2022 All rights reserved
             </p>
         </div>
     )

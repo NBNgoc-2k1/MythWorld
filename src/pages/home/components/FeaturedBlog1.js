@@ -2,22 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import AppButton from '../../../global_component/AppButton'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
+import parser from 'html-react-parser'
+import '../../add/editor.css'
 const FeaturedBlog1 = (props) => {
+    const options = {
+        replace: (domNode) => {
+            if (domNode.attribs && domNode.attribs.class === 'remove') {
+                return <></>;
+            }
+        },
+    };
+
     return (
         <div className="bg-brown grid lg:grid-cols-12">
-            <img className="lg:col-span-7"
+            <img className="w-full h-auto lg:col-span-7"
                 src={props.avatarSrc}
                 alt="blog avatar"
             />
             <div className="flex flex-col justify-center items-baseline lg:ml-20 lg:col-span-5">
-                <p className="lg:text-2xl text-white">
+                <p className="lg:text-4xl text-white">
                     {props.title}
                 </p>
-                <p className="text-white lg:text-md lg:my-6">
-                    {props.content}
-                </p>
-                <AppButton content="Explore Myth" icon={faArrowRight}/>
+                <div className="text-white lg:h-36 lg:w-4/5 lg:my-6">
+                    {parser(props.content, options)}
+                </div>
+                <AppButton content="Explore Myth" icon={faArrowRight} onClick={props.onClick}/>
             </div>
         </div>
     )

@@ -7,9 +7,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './Root'
 import { createTheme, ThemeProvider } from '@mui/material';
 import Home from './pages/home/screens/Home';
+import Blogs from './pages/blogs/screens/Blogs';
+import AddBlog from './pages/add/screens/AddBlog';
 import Error from './pages/error/Error';
+import AuthDialog from './pages/auth/screens/AuthDialog';
+import Provider from './provider';
+import UserProfilePage from './pages/profile/screens/UserProfilePage';
+import ChangePassword from './pages/profile/screens/ChangePassword';
+import MyBlogs from './pages/blogs/screens/MyBlogs';
+import BlogDetail from './pages/detail/screens/BlogDetail';
 
 const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Finger Paint',
+      'cursive'
+    ].join(',')
+  },
+
   palette: {
     primary: {
       main: '#936464'
@@ -29,15 +44,48 @@ const theme = createTheme({
   }
 })
 
+const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: < Root />,
+    element: <Root user={currentUser}/>,
     children: [
       {
         path: '/',
-        errorElement: <Error /> ,
-        element: <Home />,
+        errorElement: <Error />,
+        element: <Home user={currentUser}/>,
+      },
+      {
+        path:'/blogs',
+        element: <Blogs />,
+        errorElement: <Error />,
+      },
+      {
+        path:'/add/:id',
+        element: <AddBlog user={currentUser}/>,
+        errorElement: <Error />,
+      },
+      {
+        path:'/profile',
+        element: <UserProfilePage user={currentUser}/>,
+        errorElement: <Error />,
+      },
+      {
+        path:'/my-blogs',
+        errorElement: <Error />,
+        element: <MyBlogs user={currentUser}/>
+      },
+      {
+        path:'/password',
+        element: <ChangePassword user={currentUser}/>,
+        errorElement: <Error />,
+      },
+      {
+        path:'/blogs/:id',
+        element: <BlogDetail />,
+        errorElement: <Error />
       }
     ]
   }
@@ -47,7 +95,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <Provider>
+        <RouterProvider router={router} />
+        <AuthDialog />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );
