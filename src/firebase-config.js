@@ -8,12 +8,14 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyACJ3jo2D2umwIZMXDF771oOCiItyrf-MQ",
-    authDomain: "mythworldblog.firebaseapp.com",
-    projectId: "mythworldblog",
-    storageBucket: "mythworldblog.appspot.com",
-    messagingSenderId: "593441969379",
-    appId: "1:593441969379:web:16b4b7a7960cd548d4e1d6"
+    apiKey: "AIzaSyDe0d4E8gmz_9IOuqCXW3CuMBMBoQxjsw8",
+    authDomain: "mythworld-ef1f6.firebaseapp.com",
+    projectId: "mythworld-ef1f6",
+    storageBucket: "mythworld-ef1f6.appspot.com",
+    messagingSenderId: "887538622612",
+    appId: "1:887538622612:web:1aa786b8dce8547f08d481",
+    measurementId: "G-X8LL00CS8K"
+
 };
 
 // Initialize Firebase
@@ -21,4 +23,3 @@ const app = initializeApp(firebaseConfig);
 
 export const authentication = getAuth(app);
 export const database = getFirestore(app)
-export const storage = getStorage(app)

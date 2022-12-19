@@ -14,6 +14,8 @@ const Login = (props) => {
     const [authPopup, setAuthPopup] = useAuth()
     const [showPass, setShowPass] = useState(false)
 
+
+
     function toggleShowPass() {
         setShowPass(!showPass)
     }
@@ -89,8 +91,7 @@ const Login = (props) => {
             </div>
             <AppButton content="Login" className="lg:w-24" disabled={!(isEmail(email) && (pass !== ''))}
                 onClick={() => {
-                    LoginAPI(email, pass, () => setPass(''))
-                    props.onClose()
+                    LoginAPI(email, pass, () => setPass(''),() => props.onClose())
                 }} />
         </div>
     )

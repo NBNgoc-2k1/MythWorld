@@ -1,4 +1,4 @@
-import { Snackbar, Alert, TextField, Dialog, DialogTitle } from '@mui/material'
+import { Snackbar, Alert, TextField, Dialog, DialogTitle, } from '@mui/material'
 import React, { useState, useEffect, useRef } from 'react'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -12,7 +12,8 @@ import { useParams } from 'react-router';
 import { AddBlogData, GetBlogById, UpdateData } from '../../../api/CRUD_API';
 import { authentication } from '../../../firebase-config'
 import RequiredAuth from '../../requiredAuth/screens/RequiredAuth';
-import '../editor.css'
+import Dropdown from '../../../global_component/Dropdown/Dropdown'
+
 // Config rich text editor
 function ImageHandler() {
     var range = this.quill.getSelection();
@@ -51,6 +52,7 @@ const formats = [
     'align',
     'list', 'bullet',
     'link', 'image',
+    'color','background'
 ]
 
 let quill = null
@@ -58,16 +60,24 @@ Quill.register("modules/imageEdit", ImageEdit);
 
 // render component
 const AddBlog = (props) => {
+    // Feedback state
     const [successedPublish, setSuccessedPublish] = useState(false);
+
+    // blog state
     const [blogTitle, setBlogTitle] = useState('');
     const [blogContent, setBlogContent] = useState('')
-    const [blogView,setBlogView] = useState(0)
-    const [imagePopupOpen, setImagePopupOpen] = useState(false)
-    const [previewPopupOpen, setPreviewPopupOpen] = useState(false)
-    const [previewOpen, setPreviewOpen] = useState(false);
+    const [blogView, setBlogView] = useState(0)
     const [blogData, setBlogData] = useBlog()
     const { id } = useParams()
+    const categoryList = ['creation', 'event', 'period', 'character', 'place']
+    const regionsList = ['global', 'greek', 'norse', 'egyptian', 'chinese']
+
     const quillEl = useRef(null);
+
+    // toggle popup state
+    const [previewBlogOpen, setPreviewBlogOpen] = useState(false);
+    const [imagePopupOpen, setImagePopupOpen] = useState(false)
+    const [previewPopupOpen, setPreviewPopupOpen] = useState(false);
 
     // config for preview popup
     const options = {
@@ -121,7 +131,7 @@ const AddBlog = (props) => {
     const SetBlogData = (blog) => {
         setBlogTitle(blog.blogTitle)
         setBlogContent(blog.content)
-        setBlogView(blog.view)
+        setBlogView(blog.totalView)
         setBlogData((previousState) => {
             return {
                 ...previousState, coverPhotoSrc: blog.coverPhoto
@@ -132,8 +142,8 @@ const AddBlog = (props) => {
     // Get blog data if available
     useEffect(() => {
         GetBlogById(id).then((existedBlog) => {
-            if (existedBlog) 
-                SetBlogData(existedBlog) 
+            if (existedBlog)
+                SetBlogData(existedBlog)
             return
         })
     }, [id])
@@ -154,7 +164,7 @@ const AddBlog = (props) => {
                 props.user ? (
                     <>
                         <Snackbar
-                            anchorOrigin={{vertical: 'top',horizontal: 'center'}}
+                            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                             open={successedPublish}
                             autoHideDuration={3000}
                             onClose={() => {
@@ -173,29 +183,35 @@ const AddBlog = (props) => {
                             Create Your Myth
                         </p>
                         <div className="mx-96">
-                            <div className="flex justify-start items-start">
-                                <div className="mt-7">
-                                    <TextField
-                                        value={blogTitle}
-                                        type="text"
-                                        size="small"
-                                        variant="standard"
-                                        placeholder="Enter Blog Title"
-                                        onChange={(e) => setBlogTitle(e.target.value)}
-                                    />
-                                </div>
-                                <AppButton
-                                    content="upload Photo"
-                                    onClick={toggleImagePopup}
-                                    className="mx-2"
+                            <div className="mt-7 mx-72">
+                                <TextField
+                                    value={blogTitle}
+                                    type="text"
+                                    size="small"
+                                    variant="standard"
+                                    placeholder="Enter Blog Title"
+                                    onChange={(e) => setBlogTitle(e.target.value)}
                                 />
-                                <AppButton content="Preview Photo" disabled={(blogData.coverPhotoSrc === '')} onClick={() => {
-                                    setPreviewPopupOpen(true)
-                                }}
-                                    className="mx-2"
+                            </div>
+                            <div className="flex justify-between items-start my-4">
+                                <AppButton
+                                    content="upload Avatar"
+                                    onClick={toggleImagePopup}
+                                    className='mx-2'
+                                />
+                                <AppButton content="Preview" disabled={(blogData.coverPhotoSrc === '')}
+                                    onClick={() => {
+                                        setPreviewPopupOpen(true)
+                                    }}
                                 />
                                 <ImageUploadPopup open={imagePopupOpen} onClose={toggleImagePopup} />
-                                <PreviewPhotoPopup open={previewPopupOpen} onClose={setPreviewPopupOpen} imgSrc={blogData.coverPhotoSrc} />
+                                <PreviewPhotoPopup open={previewPopupOpen} onClose={setPreviewPopupOpen}
+                                    imgSrc={blogData.coverPhotoSrc}
+                                />
+                                <Dropdown label='Category' defaultValue={blogData.category}
+                                    dataSet={categoryList} className='lg:w-40' />
+                                <Dropdown label='Region' defaultValue={blogData.region} 
+                                    dataSet={regionsList} className='lg:w-40 lg:mx-4' />
                             </div>
                             <ReactQuill
                                 ref={quillEl}
@@ -209,31 +225,33 @@ const AddBlog = (props) => {
                             <div className="flex">
                                 <AppButton content="PUBLISH MYTH"
                                     className="mx-2"
-                                    disabled={(blogTitle !== '' && blogContent !== '') ? false : true}
+                                    disabled={(blogTitle !== '' && blogContent !== '' && blogData.coverPhotoSrc !== '') ? false : true}
                                     onClick={() => {
                                         const newData = {
                                             'blogTitle': blogTitle,
                                             'coverPhoto': blogData.coverPhotoSrc,
                                             'content': blogContent,
+                                            'category': blogData.category.toLowerCase(),
+                                            'region': blogData.region.toLowerCase(),
                                             'author': {
                                                 uid: JSON.parse(localStorage.getItem('currentUser')).uid,
                                                 name: authentication.currentUser.displayName
                                             },
-                                            'view': blogView,
+                                            'totalView': blogView,
                                         }
-                                        if (id === 'init') 
-                                            AddBlogData(newData, clearInputField) 
-                                        else UpdateData(id, 'blogs', newData,clearInputField)
+                                        if (id === 'init')
+                                            AddBlogData(newData, clearInputField)
+                                        else UpdateData(id, 'blogs', newData, clearInputField)
                                     }}
                                 />
                                 <AppButton content="PREVIEW MYTH"
                                     className="mx-2"
                                     disabled={(blogTitle !== '' && blogContent !== '') ? false : true}
-                                    onClick={() => { setPreviewOpen(true) }}
+                                    onClick={() => { setPreviewBlogOpen(true) }}
                                 />
                             </div>
                         </div>
-                        <Dialog open={previewOpen} onClose={() => setPreviewOpen(false)} className="editor-container">
+                        <Dialog open={previewBlogOpen} onClose={() => setPreviewBlogOpen(false)} className="editor-container">
                             <DialogTitle className="bg-brown text-white text-center">
                                 {blogTitle}
                             </DialogTitle>

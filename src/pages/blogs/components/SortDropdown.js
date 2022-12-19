@@ -21,9 +21,9 @@ const SortDropdown = (props) => {
     }
 
     const HandleClick = (e) => {
-        setSelectedValue(e.target.innerHTML)
+        setSelectedValue(e.target.innerText)
         setDropdownOpen(!isDropdownOpen)
-        props.handleSort(props.data.sort((a, b) => Compare(a, b, e.target.innerHTML)))
+        props.handleSort(props.data.sort((a, b) => Compare(a, b, e.target.innerText)))
     }
 
 

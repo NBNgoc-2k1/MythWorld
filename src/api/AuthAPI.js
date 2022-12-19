@@ -3,7 +3,6 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail
 } from 'firebase/auth'
 import { setDoc, doc } from 'firebase/firestore'
 import { GetSingleData } from './CRUD_API'
@@ -28,7 +27,7 @@ export function LogoutAPI() {
     })
 }
 
-export function LoginAPI(email, password,clearPass) {
+export function LoginAPI(email, password,clearPass,closePopup) {
 
     signInWithEmailAndPassword(authentication, email, password)
         .then((userAuth) => {
@@ -36,6 +35,7 @@ export function LoginAPI(email, password,clearPass) {
                 localStorage.setItem('currentUser',JSON.stringify({...user,uid: userAuth.user.uid}))
                 window.location.reload()
             })
+            closePopup()
         })
         // display the error if any
         .catch((err) => {

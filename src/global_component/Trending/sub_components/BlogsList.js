@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { GetAllOrderedBlogs } from '../../../api/CRUD_API'
 import BlogSummary from './BlogSummary'
+import PropTypes from 'prop-types'
+
 const BlogsList = (props) => {
     const [trendingBlog, setTrendingBlog] = useState([])
 

@@ -42,12 +42,10 @@ const UpdateUserInfo = (currentUser, email, firstname, lastname, setFill) => {
         return
     }
     var updateUser = {
-        'uid': currentUser.uid,
-        'userEmail': email,
+        ...currentUser,'userEmail': email,
         'lastName': lastname,
         'firstName': firstname,
         'username': `${lastname} ${firstname}`,
-        "blogs": [...currentUser.blogs],
     }
     updateEmail(authentication.currentUser, updateUser.userEmail).then(async () => {
         UpdateData(currentUser.uid, 'users', updateUser).then(() => {

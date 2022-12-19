@@ -10,7 +10,7 @@ const Trending = (props) => {
             <Title title="Trending" className="text-2xl justify-start lg:mb-4 lg:ml-4"/>
             <div className="flex flex-start">
                 <ImageMedalRank />
-                <BlogsList />
+                <BlogsList/>
             </div>
         </div>
     )

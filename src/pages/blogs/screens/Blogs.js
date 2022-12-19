@@ -10,6 +10,7 @@ import Trending from '../../../global_component/Trending/Trending'
 import FilterWrapper from '../components/FilterWrapper'
 import SortDropdown from '../components/SortDropdown'
 import { useFilter } from '../../../hooks'
+import sad_face from '../../../assets/images/error_image/sad_face.png'
 
 const Blogs = () => {
     const [allBlogs, setAllBlogs] = useState([])
@@ -18,18 +19,25 @@ const Blogs = () => {
     const [filterData, setFilterData] = useFilter()
     const [filterValueSet, setFilterValueSet] = useState()
 
+    const CheckBlogHasFilterValue = (blog) => {
+        const authorList = filterData.selectedValue.author
+        const yearList = filterData.selectedValue.year
+        const categoryList = filterData.selectedValue.category
+        const regionsList = filterData.selectedValue.regions
+
+
+        const hasAuthor = authorList.length > 0 ? authorList.includes(blog.author.name) : true
+        const hasYear = yearList.length > 0 ? yearList.includes(blog.year) : true
+        const hasCategory = categoryList.length > 0 ? categoryList.includes(blog.category) : true
+        const hasRegion = regionsList.length > 0 ? regionsList.includes(blog.regions) : true
+
+        return hasAuthor && hasYear && hasCategory && hasRegion
+    }
 
     const FilterBlogs = (blogs) => {
         const filteredBlogs = []
         blogs.map(blog => {
-            {
-                (
-                    filterData.selectedValue.author.includes(blog.author.name)
-                    && filterData.selectedValue.year.includes(GetBlogYear(blog.createdAt.seconds))
-                    && filterData.selectedValue.category.includes(blog.category)
-                    && filterData.selectedValue.regions.includes(blog.regions)
-                ) && filteredBlogs.push(blog)
-            }
+            CheckBlogHasFilterValue(blog) && filteredBlogs.push(blog)
         })
 
         setFilteredBlog(filteredBlogs)
@@ -44,46 +52,51 @@ const Blogs = () => {
         return [...new Set(array)]
     }
 
-    // useEffect(() => {
-    //     GetAllOrderedBlogs('createdAt').then((allBlogs) => {
-    //         setAllBlogs(allBlogs)
-    //         setFilteredBlog(allBlogs)
-    //         const values = {
-    //             author: [],
-    //             year: [],
-    //             category: [],
-    //             regions: []
-    //         }
-    //         allBlogs.map((blog) => {
-    //             values.author.push(blog.author.name)
-    //             values.category.push(blog.category)
-    //             values.regions.push(blog.regions)
-    //             values.year.push(GetBlogYear(blog.createdAt.seconds))
-    //         })
-    //         setFilterValueSet(values)
-    //     })
-    // }, [])
+    useEffect(() => {
+        GetAllOrderedBlogs('createdAt').then((allBlogs) => {
+            setAllBlogs(allBlogs)
+            setFilteredBlog(allBlogs)
+            const values = {
+                author: [],
+                year: [],
+                category: [],
+                regions: []
+            }
+            allBlogs.map((blog) => {
+                values.author.push(blog.author.name)
+                values.category.push(blog.category)
+                values.regions.push(blog.regions)
+                values.year.push(GetBlogYear(blog.createdAt.seconds))
+            })
+            setFilterValueSet(values)
+        })
+    }, [])
 
     function SortBlogs(sortedBlogs) {
         setAllBlogs(sortedBlogs)
     }
 
     const toggleFilter = () => {
-        RemoveFilter()
         setShowFilter(!showFilter)
-        RemoveFilter()
     }
 
-    const RemoveFilter = () => {
+    const ResetFilter = () => {
         setFilterData((previousState) => {
             return {
-                ...previousState, unselectAll: !previousState.unselectAll
+                ...previousState,
+                unselectAll: !previousState.unselectAll,
+                selectedValue: {
+                    author: [],
+                    year: [],
+                    category: [],
+                    regions: []
+                }
             }
         })
     }
 
     return (
-        <div className="flex pt-4">
+        <div className="flex mt-6 mb-20">
             <div className="w-7/12 ">
                 <div className="flex">
                     <IconButton icon={faFilter} className="my-4 text-teal relative lg:left-8" iconClass="lg:text-3xl"
@@ -102,18 +115,36 @@ const Blogs = () => {
                         }
                     </DialogContent>
                     <DialogActions>
-                        <AppButton content="Restart" className="bg-dark-grey" onClick={toggleFilter} />
-                        <AppButton content="Finish" className="" onClick={() => FilterBlogs(allBlogs)}/>
+                        <AppButton content="Restart" className="bg-dark-grey" onClick={() => {
+                            ResetFilter()
+                            toggleFilter()
+                            ResetFilter()
+                            setFilteredBlog(allBlogs)
+                        }} />
+                        <AppButton content="Finish" className="" onClick={() => {
+                            FilterBlogs(allBlogs)
+                            toggleFilter()
+                        }} />
                     </DialogActions>
                 </Dialog>
                 {
-                    filteredBlogs.length > 0 ? (
-                        <div className="grid lg:grid-cols-3 gap-16">
-                            {allBlogs.map((blog) => <BlogCard
-                                item={blog}
-                                isEdit={false}
-                            />)}
-                        </div>
+                    allBlogs.length > 0 ? (
+                        <>
+                            {filteredBlogs.length > 0 ? <div className="grid lg:grid-cols-3 gap-16">
+                                {filteredBlogs.map((blog) => <BlogCard
+                                    item={blog}
+                                    isEdit={false}
+                                />)}
+                            </div> : <div className='my-16'>
+                                <img
+                                    src={sad_face}
+                                    alt="Sad Face"
+                                    className="m-auto"
+                                />
+                                <p className="text-center text-4xl mt-8"
+                                >Oops...!</p>
+                            </div>}
+                        </>
                     ) : <Loading />
                 }
             </div>

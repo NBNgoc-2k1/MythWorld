@@ -16,14 +16,10 @@ export const AddBlogData = async (newBlog, clearInputField) => {
         const currentUserInfo = JSON.parse(localStorage.getItem('currentUser'))
         const blogRef = await addDoc(collection(database, "blogs"), { ...newBlog, createdAt: serverTimestamp() });
         const newUserData = {
-            'userEmail': currentUserInfo.userEmail,
-            'lastName': currentUserInfo.lastName,
-            'firstName': currentUserInfo.firstName,
-            "blogs": [
+            ...currentUserInfo,"blogs": [
                 ...currentUserInfo.blogs,
                 blogRef.id
             ],
-            'uid':currentUserInfo.uid
         }
         UpdateData(currentUserInfo.uid,'users',newUserData)
         localStorage.setItem('currentUser', JSON.stringify(newUserData))
@@ -59,10 +55,7 @@ export const DeleteBlogById = async (id) => {
         await deleteDoc(doc(database, 'blogs', id))
         const currentUserData = JSON.parse(localStorage.getItem('currentUser'))
         const newUserData = {
-            'uid':currentUserData.uid,
-            'userEmail': currentUserData.userEmail,
-            'lastName': currentUserData.lastName,
-            'firstName': currentUserData.firstName,
+            ...currentUserData,
             "blogs": [...currentUserData.blogs.filter(blogId => blogId !== id)],
         }
         await updateDoc(doc(database, 'users', currentUserData.uid), newUserData)
