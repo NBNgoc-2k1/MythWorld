@@ -60,12 +60,11 @@ const BlogCard = (props) => {
             <div className="m-4">
                 <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl h-16">
                     {props.item.blogTitle}
-                    <br />
-                    <div className="flex">
-                        <FontAwesomeIcon icon={faEye} className="text-white mt-2 md:mt-1" />
-                        <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
-                    </div>
                 </p>
+                <div className="flex">
+                    <FontAwesomeIcon icon={faEye} className="text-white mt-2 md:mt-1" />
+                    <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
+                </div>
                 <p className="text-white max-md:hidden text-base">
                     {datePost}
                 </p>

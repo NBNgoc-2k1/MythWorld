@@ -14,17 +14,19 @@ const BlogDetail = () => {
     let { id } = useParams()
     const [requiredBlog, setRequiredBlog] = useState(null)
     const [sameAuthorBlogs, setSameAuthorBlogs] = useState([])
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
     useEffect(() => {
         GetBlogById(id).then((returnedBlog) => {
             setRequiredBlog(returnedBlog)
             UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
+            GetAllOrderedBlogs('createdAt').then((allBlogs) => {
+                var tempBlogs = allBlogs
+                .filter(blog => blog.author.uid === returnedBlog.author.uid)
+                .filter(blog => blog.id !== id)
+                tempBlogs.length === 0 && tempBlogs.push(returnedBlog)
+                setSameAuthorBlogs(tempBlogs)
+            })
         })
-
-        GetAllOrderedBlogs('createdAt').then((allBlogs) => setSameAuthorBlogs(allBlogs
-            .filter(blog => blog.author.uid === currentUser.uid)
-            .filter(blog => blog.id !== id)))
     }, [id])
 
 
