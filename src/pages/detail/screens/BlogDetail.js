@@ -19,7 +19,7 @@ const BlogDetail = () => {
     useEffect(() => {
         GetBlogById(id).then((returnedBlog) => {
             setRequiredBlog(returnedBlog)
-            // UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
+            UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
         })
 
         GetAllOrderedBlogs('createdAt').then((allBlogs) => setSameAuthorBlogs(allBlogs
