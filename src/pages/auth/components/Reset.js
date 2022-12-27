@@ -78,16 +78,15 @@ const Reset = () => {
                     Email has never registered. Check email you typed
                 </Alert>
             </Snackbar>
-            <div className="flex my-4">
-                <p className="text-2xl mr-2">Reset Your</p>
+            <div className="flex my-4 sm:text-2xl ">
+                <p className="mr-2">Reset Your</p>
                 <Link
                     underline="none"
                     href="/"
-                    className="text-2xl hover:underline hover:decoration-2 hover:underline-offset-8"
+                    className="hover:underline hover:decoration-2 hover:underline-offset-8"
                 >MythWorld</Link>
 
-                <p className="ml-2 text-2xl">Password</p>
-
+                <p className="ml-2">Password</p>
             </div>
             <div className="w-72 m-auto">
                 <TextField

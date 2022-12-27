@@ -22,7 +22,15 @@ const AuthDialog = () => {
     return (
         <div className={`w-full h-screen inset-0 fixed ${authPopup.open ? 'flex' : 'hidden'} z-20 items-center justify-center`}>
             <div className="fixed inset-0 -z-10 bg-dark-grey opacity-60" onClick={toggleOpenAuthDialog}></div>
-            <div className="flex w-5/6 bg-light-silver rounded-xl h-2/3
+            <IconButton icon={faClose} className='absolute
+                top-[14%] left-[85%]
+                min-[414px]:bottom-64
+                sm:bottom-48
+                lg:bottom-56
+            ' iconClass='text-3xl text-teal lg:text-white'
+                onClick={toggleOpenAuthDialog}
+            />
+            <div className="flex w-5/6 bg-light-silver rounded-xl h-[73%]
                 sm:h-1/2 sm:w-4/5
                 lg:h-2/3
                 xl:h-3/4 xl:w-2/3
@@ -38,14 +46,6 @@ const AuthDialog = () => {
                     alt="god in auth"
                 />
             </div>
-            <IconButton icon={faClose} className='relative
-                right-10 bottom-48
-                min-[414px]:bottom-64
-                sm:bottom-48
-                lg:bottom-56
-            ' iconClass='text-3xl text-teal lg:text-white'
-                onClick={toggleOpenAuthDialog}
-            />
         </div>
     )
 }

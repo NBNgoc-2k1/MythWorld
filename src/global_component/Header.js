@@ -76,7 +76,7 @@ const Header = (props) => {
           alt="logo"
           className="w-16 h-16"
         />
-        <p className="nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline">
+        <p className={`${!props.user && 'max-[414px]:hidden'} nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline`}>
           Myth World
         </p>
       </div>
