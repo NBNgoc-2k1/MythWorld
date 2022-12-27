@@ -53,7 +53,7 @@ const Register = (props) => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center mt-4">
             <div className="flex mt-3 mb-2 max-[414px]:text-xs">
                 <p>Already have an account?</p>
                 <p onClick={() => {
