@@ -9,8 +9,12 @@
     text-indent: 2rem;
 }
 
+.ql-editor h1,h2,h3,h4,h5,h6 {
+    text-indent: .5rem;
+}
+
 .ql-editor img{
-    width:80%;
+    width:70%;
     margin:auto
 }
 

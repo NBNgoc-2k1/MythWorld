@@ -53,7 +53,7 @@ const Register = (props) => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center my-auto">
+        <div className="flex flex-col items-center justify-center">
             <div className="flex">
                 <p>Already have an account?</p>
                 <p onClick={() => {
@@ -64,13 +64,13 @@ const Register = (props) => {
                 >Login</p>
             </div>
             <div className="flex my-4">
-                <p className="text-2xl mr-2">Create Your</p>
+                <p className="text-xl 2xl:text-2xl mr-2">Create Your</p>
                 <Link
                     underline="none"
                     href="/"
-                    className="text-2xl hover:underline hover:decoration-2 hover:underline-offset-8"
+                    className="text-xl 2xl:text-2xl hover:underline hover:decoration-2 hover:underline-offset-8"
                 >MythWorld</Link>
-                <p className="ml-2 text-2xl">Account</p>
+                <p className="text-xl ml-2 2xl:text-2xl">Account</p>
             </div>
             <div className="w-72 m-auto">
                 <TextField

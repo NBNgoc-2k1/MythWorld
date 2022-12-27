@@ -5,23 +5,23 @@ import AppButton from '../../global_component/AppButton'
 const Error = () => {
     const navigation = useNavigate()
     return (
-        <div className="grid lg:grid-cols-12 py-6">
-            <div className="flex items-center justify-center lg:col-span-7">
-                <p className="text-brown" style={{ fontSize: 224 }}>4</p>
+        <div className="lg:flex py-6">
+            <div className="flex items-center justify-center lg:w-7/12">
+                <p className="text-brown text-[10rem] sm:text-[14rem]">4</p>
                 <img
                     src={taiji}
                     alt="Taiji"
-                    className="m-0"
+                    className="max-sm:w-44  m-0"
                 />
-                <p className="text-brown" style={{ fontSize: 224 }}>4</p>
+                <p className="text-brown text-[10rem] sm:text-[14rem]">4</p>
             </div>
-            <div className="flex flex-col items-baseline justify-center lg:col-span-5">
-                <p className="text-brown text-4xl">SOMETHING WENT WRONG</p>
-                <p className="w-8/12 my-8">
+            <div className="flex flex-col mx-auto items-baseline justify-center w-3/4x lg:w-5/12">
+                <p className="max-lg:hidden text-brown text-3xl xl:text-4xl">SOMETHING WENT WRONG</p>
+                <p className="max-lg:mx-auto w-full min-[414px]:w-10/12 max-lg:text-center lg:my-8">
                     We are very sorry for inconvenience.
                     It looks you're trying to access a page that either has been deleted or never been existed.
                 </p>
-                <AppButton content="Back to home" onClick={() => navigation('/')}/>
+                <AppButton className='max-lg:mx-auto' content="back to home" onClick={() => navigation('/')} />
             </div>
         </div>
     )

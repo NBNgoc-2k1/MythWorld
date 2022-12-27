@@ -23,9 +23,10 @@ const SortDropdown = (props) => {
     return (
         <div className={`flex flex-col h-12 ${props.className}`}
         >
-            <label className={`text-xs relative top-2 left-2 
+            <label className={`text-xs relative 
+                w-[4.5rem] top-2 left-2 
                 ${!isDropdownOpen ? 'text-brown' : 'text-dark-grey'}
-                w-[4.5vw] text-center px-px z-10 block bg-light-silver`}>{props.label}</label>
+                text-center z-10 block bg-light-silver`}>{props.label}</label>
             <div className={`flex justify-between bg-transparent px-4 cursor-pointer h-12
                 rounded-xl border-2 border-solid 
                 ${isDropdownOpen ? 'border-dark-silver' : 'border-teal'}`}
@@ -33,11 +34,11 @@ const SortDropdown = (props) => {
                     setDropdownOpen(!isDropdownOpen)
                 }}
             >
-                <p className="text-xl my-2 capitalize">{selectedValue}</p>
+                <p className="sm:text-xl my-2 capitalize">{selectedValue}</p>
                 {
                     isDropdownOpen
-                        ? <FontAwesomeIcon icon={faSortUp} size="2x" className="hidden text-teal lg:block mt-3" />
-                        : <FontAwesomeIcon icon={faSortDown} size="2x" className="hidden text-teal lg:block" />
+                        ? <FontAwesomeIcon icon={faSortUp} size="2x" className="text-teal lg:block mt-3" />
+                        : <FontAwesomeIcon icon={faSortDown} size="2x" className="text-teal lg:block" />
                 }
             </div>
             <div className={`${isDropdownOpen ? 'flex' : 'hidden'} w-full h-screen absolute inset-0`}
@@ -47,7 +48,7 @@ const SortDropdown = (props) => {
                     bg-light-silver z-10 rounded-lg`}>
                 {
                     props.dataSet.map(data =>
-                        <p className="text-xl cursor-pointer py-2 capitalize hover:bg-teal hover:text-white px-4"
+                        <p className="sm:text-xl cursor-pointer py-2 capitalize hover:bg-teal hover:text-white px-4"
                             onClick={HandleClick}
                         >{data}</p>
                     )

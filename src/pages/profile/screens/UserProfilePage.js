@@ -77,7 +77,9 @@ const UserProfilePage = (props) => {
                     </Alert>}
                     <div className="flex flex-col items-center justify-center my-12">
                         <p className="text-brown text-3xl">Account Settings</p>
-                        <div className="w-96 rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
+                        <div className="rounded-3xl w-80 my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center
+                            sm:w-96
+                        ">
                             <Avatar {...stringAvatar(`${lastname} ${firstname}`)} className='my-3' />
                             <TextField
                                 id="outlined-firstname-input"
@@ -110,7 +112,7 @@ const UserProfilePage = (props) => {
                                 variant="standard"
                             />
                         </div>
-                        <AppButton content="Save Changes" onClick={() => {
+                        <AppButton content="save changes" onClick={() => {
                             UpdateUserInfo(currentUser, email, firstname, lastname, setFilled)
                         }} />
                     </div>

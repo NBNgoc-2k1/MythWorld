@@ -25,26 +25,31 @@ const BlogCard = (props) => {
     }, [])
 
     return (
-        <div className="bg-brown rounded-2xl lg:w-[18rem] lg:m-4">
-            <div className="relative lg:h-48">
+        <div className="bg-brown rounded-2xl w-48 sm:w-52 md:w-64
+            lg:w-72 m-4
+        ">
+            <div className="relative min-[414px]:h-32
+                md:h-40
+                lg:h-48"
+            >
                 <img
                     src={props.item.coverPhoto}
                     alt="blog avatar"
                     className="rounded-t-2xl w-full h-full"
                 />
                 {props.isEdit && (
-                    <div className>
+                    <div className=''>
                         <IconButton
-                            className="blogcard_iconbtn lg:left-60"
+                            className="blogcard_iconbtn min-[414px]:left-[80%] lg:left-[85%]"
                             icon={faPen}
-                            iconClass="text-lg"
+                            iconClass="text-base md:text-lg"
                             onClick={() => navigation(`/add/${props.item.id}`)}
 
                         />
                         <IconButton
                             icon={faTrashAlt}
-                            className="blogcard_iconbtn lg:left-48"
-                            iconClass="text-lg"
+                            className="blogcard_iconbtn min-[414px]:left-[56%] sm:left-[60%] lg:left-[68%]"
+                            iconClass="text-base md:text-lg"
                             onClick={() => {
                                 toggleConfirmPopup()
                             }}
@@ -53,19 +58,28 @@ const BlogCard = (props) => {
                 )}
             </div>
             <div className="m-4">
-                <p className="text-white text-2xl h-16">
+                <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl h-16">
                     {props.item.blogTitle}
                     <br />
                     <div className="flex">
-                        <FontAwesomeIcon icon={faEye} className="text-white mt-1" />
+                        <FontAwesomeIcon icon={faEye} className="text-white mt-2 md:mt-1" />
                         <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
                     </div>
                 </p>
-                <p className="text-white text-md">
-                    Posted on: {datePost}
+                <p className="text-white max-md:hidden text-base">
+                    {datePost}
                 </p>
-
-                <AppButton content="Explore Myth" icon={faArrowRight} className="lg:mt-6" onClick={() => {
+                <div className='flex justify-between items-end'>
+                    <p className="text-white block text-base md:hidden">
+                        {datePost}
+                    </p>
+                    <IconButton icon={faArrowRight} className='md:hidden bg-teal h-9 w-9' iconClass='text-white m-2.5'
+                        onClick={() => {
+                            navigation(`/blogs/${props.item.id}`)
+                        }}
+                    />
+                </div>
+                <AppButton content="explore" icon={faArrowRight} className='hidden md:flex' onClick={() => {
                     navigation(`/blogs/${props.item.id}`)
                 }} />
             </div>
@@ -75,8 +89,8 @@ const BlogCard = (props) => {
                     <p className="">Are you sure you want to delete this blog?</p>
                 </DialogContent>
                 <DialogActions>
-                    <AppButton content="No" onClick={() => toggleConfirmPopup()} />
-                    <AppButton content="Yes" className="bg-dark-grey" onClick={() => {
+                    <AppButton content="cancel" onClick={() => toggleConfirmPopup()} />
+                    <AppButton content="confim" className="bg-dark-grey" onClick={() => {
                         DeleteBlogById(props.item.id)
                     }} />
                 </DialogActions>

@@ -5,6 +5,7 @@ import Header from './global_component/Header'
 import Footer from './global_component/Footer'
 import IconButton from './global_component/IconButton'
 import {useBlog} from './hooks'
+import BottomNavigation from './global_component/BottomNav';
 const Root = (props) => {
     const location = useLocation()
     const [visible, setVisible] = useState(false)
@@ -47,11 +48,13 @@ const Root = (props) => {
                 <Outlet />
             </div>
             <IconButton icon={faArrowUp}
-                className={`fixed ${visible ? 'inline' : 'hidden'} lg:right-24 lg:top-3/4 bg-teal lg:w-14 lg:h-14 `}
+                className={`fixed ${visible ? 'inline' : 'hidden'} right-8 bottom-[10vh] md:bottom-[6vh] bg-teal w-14 h-14 `}
                 onClick={scrollToTop}
-                iconClass="text-white lg:my-3 lg:mx-4 lg:text-3xl"
+                iconClass="text-white my-3 mx-4 text-3xl"
             />
+            <BottomNavigation user={props.user}/>
             <Footer />
+            <div className='h-[9.5vh] sm:h-[7vh] md:hidden lg:h-0'></div>
         </div>
     )
 }

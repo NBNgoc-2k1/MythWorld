@@ -12,22 +12,35 @@ const Intro = (props) => {
                 ...previousState, open: !authPopup.open
             }
         })
-        document.body.style.overflowY="hidden"
+        document.body.style.overflowY = "hidden"
     }
 
     return (
-        <div className="bg-dark-grey grid grid-cols-12">
-            <div className="flex flex-col justify-center items-baseline ml-20 col-span-5">
-                <p className="text-2xl text-white">
+        <div className={`relative bg-dark-grey flex-row-reverse
+            hidden 
+            sm:flex 
+            md:flex-row`}
+        >
+            <div className={`mx-5 p-3 bg-dark-grey rounded-2xl opacity-80 w-1/2
+                flex-col justify-center items-baseline flex 
+                sm:top-36
+                max-md:absolute md:w-5/12 md:top-0 md:ml-10 md:bg-transparent md:opacity-100 md:top-48 
+                lg:ml-20
+            `}>
+                <p className="text-2xl text-white my-3">
                     WELCOME!
                 </p>
-                <p className="text-white w-7/12 text-md my-6">
+                <p className="text-white text-xs lg:text-base
+                    2xl:w-7/12
+                    xl:w-2/3
+                    md:w-5/6
+                ">
                     A worldwide mythological blog for those interested in the subject. Register today never miss any article
                     and write your blogs.
                 </p>
                 {!props.user && <AppButton content="Login/Register" onClick={toggleOpenAuthDialog} />}
             </div>
-            <img className="col-span-7"
+            <img className={`md:w-7/12`}
                 src={avt}
                 alt="blog avatar"
             />

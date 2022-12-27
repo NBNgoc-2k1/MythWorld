@@ -4,13 +4,19 @@
 
 @layer components {
     .nav-item {
-        @apply text-2xl text-white pb-2 pt-6 hover:underline hover:underline-offset-8 ;
+        @apply text-white hover:underline hover:underline-offset-8 py-4 px-10 text-xl
+        max-[414px]:text-lg
+        max-sm:p-6
+        md:block md:pt-6
+        lg:text-2xl;
     }
     .text-footer {
-        @apply text-2xl text-white my-4
+        @apply text-lg xl:text-2xl text-white m-3
+        md:my-4 md:mx-0
+        max-[414px]:m-2
     }
     .blogcard_iconbtn {
-        @apply absolute bg-white border border-black border-solid 
-        lg:w-10 lg:h-10 lg:top-6 lg:py-2 lg:px-3 
+        @apply absolute bg-white border border-black border-solid top-6 w-8 h-8 px-2 py-1
+        md:w-10 md:h-10 md:py-2 md:px-3 
     }
 }

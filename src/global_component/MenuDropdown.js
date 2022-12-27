@@ -51,23 +51,32 @@ const MenuDropdown = (props) => {
                 if (e.currentTarget === e.target) {
                     props.onClose();
                 }
-            }}        
+            }}
         >
             <div className={` rounded-lg w-72
-                absolute bg-teal top-20 right-12 shadow-white shadow-inner
+                absolute bg-teal top-20 border-2 border-solid border-white
+                right-[3vw] sm:right-[13vw] md:right-[3vw] lg:right-28 max-[414px]:right-[6vw]
             `}>
-                <span className="absolute right-3 -top-2.5"
+                <span className="absolute right-3 -top-3"
                     style={{
-                        borderLeft: '10px solid transparent',
-                        borderRight: "10px solid transparent",
-                        borderBottom: '10px solid #649393'
+                        borderLeft: '12px solid transparent',
+                        borderRight: "12px solid transparent",
+                        borderBottom: '11px solid #ffffff'
                     }}
-                ></span>
+                >
+                    <span className="absolute top-px -right-[0.8rem]"
+                        style={{
+                            borderLeft: "13px solid transparent",
+                            borderRight: "13px solid transparent",
+                            borderBottom: "12px solid #649393",
+                        }}
+                    ></span>
+                </span>
                 {props.user && <div className="flex pl-2 py-2 border-b-white border-b-2 w-full">
-                    <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />
+                    <Avatar {...stringAvatar(`${props.user.username}`)} className='my-3' />
                     <div className="flex flex-col text-sm my-3 pl-2">
                         <p className="text-white "
-                        >{props.user.lastName} {props.user.firstName}</p>
+                        >{props.user.username}</p>
                         <p className="text-white w-2/3"
                         >{props.user.userEmail}</p>
                     </div>
@@ -86,7 +95,7 @@ const MenuDropdown = (props) => {
                             }}
                         >
                             Edit Profile
-                    </Link>
+                        </Link>
                     </div>
                     <div className="flex my-4"
 
@@ -103,7 +112,7 @@ const MenuDropdown = (props) => {
 
                         >
                             My Blogs
-                    </Link>
+                        </Link>
                     </div>
                     <div className="flex mb-4"
                     >
@@ -118,7 +127,7 @@ const MenuDropdown = (props) => {
                             }}
                         >
                             Change Password
-                    </Link>
+                        </Link>
                     </div>
                     <div className="flex mb-4" onClick={() => {
                         LogoutAPI()
@@ -129,7 +138,7 @@ const MenuDropdown = (props) => {
                         <Link className="text-white no-underline ml-4 
                         hover:underline underline-offset-4 decoration-2">
                             Log out
-                    </Link>
+                        </Link>
                     </div>
                 </div>
             </div>

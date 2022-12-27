@@ -56,7 +56,7 @@ const ChangePassword = (props) => {
                         </Alert>}
                         <div className="flex flex-col items-center justify-center my-12">
                             <p className="text-brown text-3xl">Change Password</p>
-                            <div className="w-96 rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
+                            <div className="w-[22rem] rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
                                 <TextField
                                     id="outlined-firstname-input"
                                     label="Old Password"
@@ -67,7 +67,7 @@ const ChangePassword = (props) => {
                                     value={oldPassword}
                                     variant="standard"
                                 />
-                                <FormControl variant="standard" size='small' sx={{width:'13vw'}}>
+                                <FormControl variant="standard" size='small' sx={{width:'53%'}}>
                                     <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
                                     <Input
                                         id="outlined-adornment-password"
@@ -87,7 +87,7 @@ const ChangePassword = (props) => {
                                         label="New Password"
                                     />
                                 </FormControl>
-                                <FormControl variant="standard" margin='normal' size='small' sx={{width:'13vw'}}>
+                                <FormControl variant="standard" margin='normal' size='small' sx={{width:'53%'}}>
                                     <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
                                     <Input
                                         id="outlined-adornment-password"
@@ -109,7 +109,7 @@ const ChangePassword = (props) => {
                                 </FormControl>
 
                             </div>
-                            <AppButton content="Save" disabled={!((newPassword !== '') && (confirmPassword === newPassword))}
+                            <AppButton content="save" disabled={!((newPassword !== '') && (confirmPassword === newPassword))}
                                 onClick={() => {
                                     submitChangePassword(newPassword, oldPassword)
                                 }}

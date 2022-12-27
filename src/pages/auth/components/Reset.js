@@ -115,7 +115,7 @@ const Reset = () => {
             hover:decoration-brown hover:underline hover:decoration-2 hover:underline-offset-8"
                 >Login</p>
             </div>
-            <AppButton content="Reset" disabled={!isEmail(email)} className="lg:w-24" onClick={() => {
+            <AppButton content="reset" disabled={!isEmail(email)} className="lg:w-24" onClick={() => {
                 CheckUserExist(email)
             }} />
         </div>

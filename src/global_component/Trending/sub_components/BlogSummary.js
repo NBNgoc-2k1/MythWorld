@@ -7,6 +7,19 @@ import IconButton from '../../IconButton';
 const BlogSummary = (props) => {
     const [datePost, setDatePost] = useState('')
     const navigation = useNavigate()
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        function handleWindowResize() {
+            setWindowWidth(window.innerWidth);
+        }
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [windowWidth]);
+
 
     useEffect(() => {
         const date = new Date(props.item.createdAt.seconds * 1000);
@@ -16,21 +29,23 @@ const BlogSummary = (props) => {
     }, [])
 
     return (
-        <div className="flex my-4 bg-brown w-[30rem] rounded-2xl">
-            <img className="m-0 w-36 h-auto rounded-l-2xl"
+        <div className="flex my-4 bg-brown w-64 xl:w-[23rem] 2xl:w-[30rem] rounded-2xl"
+            style={{backgroundImage: (windowWidth < 1280) ? `url(${props.item.coverPhoto})` : 'none'}}
+        >
+            <img className="m-0 w-28 2xl:w-32 h-auto rounded-l-2xl max-xl:hidden"
                 src={props.item.coverPhoto}
             />
-            <div className="flex items-center justify-around w-full">
-                <div className="flex flex-col mt-4 w-[19rem]">
-                    <p className="text-3xl text-white ml-6">{props.item.blogTitle}</p>
-                    <p className="text-md text-white ml-6">Post on: {datePost}
+            <div className="flex items-end xl:justify-evenly w-full">
+                <div className="flex flex-col mt-4 w-48 2xl:w-[18rem]">
+                    <p className="text-xl 2xl:text-3xl text-white ml-6">{props.item.blogTitle}</p>
+                    <p className="text-md text-white ml-6">{datePost}
                     </p>
                     <div className="flex my-2">
                         <FontAwesomeIcon icon={faEye} className="text-white ml-6 mt-2" />
                         <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
                     </div>
                 </div>
-                <IconButton icon={faArrowRight} className="bg-teal w-12 h-12 mr-[9.5rem]" iconClass="text-white text-xl m-3.5" 
+                <IconButton icon={faArrowRight} className="bg-teal w-12 h-12 mb-3" iconClass="text-white text-xl m-3.5"
                     onClick={() => navigation(`/blogs/${props.item.id}`)}
                 />
             </div>

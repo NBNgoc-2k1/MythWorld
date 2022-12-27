@@ -13,6 +13,7 @@ import { AddBlogData, GetBlogById, UpdateData } from '../../../api/CRUD_API';
 import { authentication } from '../../../firebase-config'
 import RequiredAuth from '../../requiredAuth/screens/RequiredAuth';
 import Dropdown from '../../../global_component/Dropdown/Dropdown'
+import { faBlog, faImage } from '@fortawesome/free-solid-svg-icons';
 
 // Config rich text editor
 function ImageHandler() {
@@ -52,7 +53,7 @@ const formats = [
     'align',
     'list', 'bullet',
     'link', 'image',
-    'color','background'
+    'color', 'background'
 ]
 
 let quill = null
@@ -179,11 +180,11 @@ const AddBlog = (props) => {
                                 }}
                             >Publish your myth succesfully</Alert>
                         </Snackbar>
-                        <p className="text-brown mb-4 mt-8  text-5xl text-center">
+                        <p className="text-brown mb-4 mt-8 text-3xl sm:text-4xl lg:text-5xl text-center">
                             Create Your Myth
                         </p>
-                        <div className="mx-96">
-                            <div className="mt-7 mx-72">
+                        <div className="mx-8 sm:mx-28 xl:mx-64 2xl:mx-96">
+                            <div className="mt-7 mx-16 min-[414px]:mx-20 sm:mx-28 md:mx-48 lg:mx-72">
                                 <TextField
                                     value={blogTitle}
                                     type="text"
@@ -193,25 +194,29 @@ const AddBlog = (props) => {
                                     onChange={(e) => setBlogTitle(e.target.value)}
                                 />
                             </div>
-                            <div className="flex justify-between items-start my-4">
-                                <AppButton
-                                    content="upload Avatar"
-                                    onClick={toggleImagePopup}
-                                    className='mx-2'
-                                />
-                                <AppButton content="Preview" disabled={(blogData.coverPhotoSrc === '')}
-                                    onClick={() => {
-                                        setPreviewPopupOpen(true)
-                                    }}
-                                />
-                                <ImageUploadPopup open={imagePopupOpen} onClose={toggleImagePopup} />
-                                <PreviewPhotoPopup open={previewPopupOpen} onClose={setPreviewPopupOpen}
-                                    imgSrc={blogData.coverPhotoSrc}
-                                />
-                                <Dropdown label='Category' defaultValue={blogData.category}
-                                    dataSet={categoryList} className='lg:w-40' />
-                                <Dropdown label='Region' defaultValue={blogData.region} 
-                                    dataSet={regionsList} className='lg:w-40 lg:mx-4' />
+                            <div className="lg:flex justify-between items-start my-4">
+                                <div className='flex justify-between'>
+                                    <AppButton icon={faImage}
+                                        content="add"
+                                        onClick={toggleImagePopup}
+                                        className='mx-2'
+                                    />
+                                    <AppButton icon={faImage} content="preview" disabled={(blogData.coverPhotoSrc === '')}
+                                        onClick={() => {
+                                            setPreviewPopupOpen(true)
+                                        }}
+                                    />
+                                    <ImageUploadPopup open={imagePopupOpen} onClose={toggleImagePopup} />
+                                    <PreviewPhotoPopup open={previewPopupOpen} onClose={setPreviewPopupOpen}
+                                        imgSrc={blogData.coverPhotoSrc}
+                                    />
+                                </div>
+                                <div className='flex justify-between'>
+                                    <Dropdown label='Category' defaultValue={blogData.category}
+                                        dataSet={categoryList} className='w-40 max-lg:mx-2' />
+                                    <Dropdown label='Region' defaultValue={blogData.region}
+                                        dataSet={regionsList} className='w-40 lg:mx-4' />
+                                </div>
                             </div>
                             <ReactQuill
                                 ref={quillEl}
@@ -220,11 +225,12 @@ const AddBlog = (props) => {
                                 modules={modules}
                                 formats={formats}
                                 onChange={handleEditorChange}
-                                className="my-4"
+                                className="my-8"
                             />
                             <div className="flex">
-                                <AppButton content="PUBLISH MYTH"
-                                    className="mx-2"
+                                <AppButton content='publish'
+                                    icon={faBlog}
+                                    className="mr-2 sm:mx-2"
                                     disabled={(blogTitle !== '' && blogContent !== '' && blogData.coverPhotoSrc !== '') ? false : true}
                                     onClick={() => {
                                         const newData = {
@@ -244,8 +250,9 @@ const AddBlog = (props) => {
                                         else UpdateData(id, 'blogs', newData, clearInputField)
                                     }}
                                 />
-                                <AppButton content="PREVIEW MYTH"
-                                    className="mx-2"
+                                <AppButton content="preview"
+                                    icon={faBlog}
+                                    className="sm:mx-2"
                                     disabled={(blogTitle !== '' && blogContent !== '') ? false : true}
                                     onClick={() => { setPreviewBlogOpen(true) }}
                                 />

@@ -9,7 +9,7 @@ const Loading = () => {
                 alt="Taiji"
                 className="rotate h-auto"
             />
-            <p className="text-brown m-auto text-4xl"
+            <p className="text-brown m-auto text-2xl sm:text-4xl"
             >Entering Myth World ...</p>
         </div>
     )

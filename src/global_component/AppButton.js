@@ -3,17 +3,20 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const AppButton = (props) => {
     return (
-        <div className={`flex justify-around 
+        <div className={`flex justify-around w-fit my-4 
                 ${props.disabled ? 'bg-dark-silver cursor-default pointer-events-none' : 'bg-teal cursor-pointer hover:brightness-75'} rounded-full 
-                ${props.className} 
-                px-8 w-fit lg:my-4 `}
+                ${props.className}
+                px-6`}
             onClick={props.onClick}
         >
-            <p className={`${props.disabled ? 'text-dark-grey' : 'text-white'} text-center ${props.icon ? 'lg:text-xl' : 'lg:text-lg'} lg:my-2 `}
+            <p className={`text-center my-2.5 first-letter:uppercase
+                ${props.disabled ? 'text-dark-grey' : 'text-white'} 
+                ${props.icon ? 'lg:text-xl' : 'lg:text-lg'} 
+            `}
             >{props.content}</p>
             {
                 props.icon && (
-                    <FontAwesomeIcon icon={props.icon} className={`${props.iconClassName} lg:ml-3 lg:text-2xl lg:mt-3 text-white`}/>
+                    <FontAwesomeIcon icon={props.icon} className={`${props.iconClassName} ml-3 text-xl mt-3 ${props.disabled ? 'text-dark-grey' : 'text-white'}`}/>
                 )
             }
         </div>

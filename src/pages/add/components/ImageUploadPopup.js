@@ -26,7 +26,7 @@ const ImageUploadPopup = (props) => {
                     className="mt-4" fullWidth
                 />
                 <br />
-                <AppButton content="Add" className="lg:w-32 mx-auto" onClick={handleClose} />
+                <AppButton content="add" className="lg:w-32 mx-auto" onClick={handleClose} />
             </DialogContent>
         </Dialog>
     )

@@ -11,6 +11,7 @@ import FilterWrapper from '../components/FilterWrapper'
 import SortDropdown from '../components/SortDropdown'
 import { useFilter } from '../../../hooks'
 import sad_face from '../../../assets/images/error_image/sad_face.png'
+import BlogSlide from '../../../global_component/BlogSlide';
 
 const Blogs = () => {
     const [allBlogs, setAllBlogs] = useState([])
@@ -29,7 +30,7 @@ const Blogs = () => {
         const hasAuthor = authorList.length > 0 ? authorList.includes(blog.author.name) : true
         const hasYear = yearList.length > 0 ? yearList.includes(blog.year) : true
         const hasCategory = categoryList.length > 0 ? categoryList.includes(blog.category) : true
-        const hasRegion = regionsList.length > 0 ? regionsList.includes(blog.regions) : true
+        const hasRegion = regionsList.length > 0 ? regionsList.includes(blog.region) : true
 
         return hasAuthor && hasYear && hasCategory && hasRegion
     }
@@ -65,7 +66,7 @@ const Blogs = () => {
             allBlogs.map((blog) => {
                 values.author.push(blog.author.name)
                 values.category.push(blog.category)
-                values.regions.push(blog.regions)
+                values.regions.push(blog.region)
                 values.year.push(GetBlogYear(blog.createdAt.seconds))
             })
             setFilterValueSet(values)
@@ -73,7 +74,7 @@ const Blogs = () => {
     }, [])
 
     function SortBlogs(sortedBlogs) {
-        setAllBlogs(sortedBlogs)
+        setFilteredBlog(sortedBlogs)
     }
 
     const toggleFilter = () => {
@@ -96,10 +97,10 @@ const Blogs = () => {
     }
 
     return (
-        <div className="flex mt-6 mb-20">
-            <div className="w-7/12 ">
-                <div className="flex">
-                    <IconButton icon={faFilter} className="my-4 text-teal relative lg:left-8" iconClass="lg:text-3xl"
+        <div className="flex mt-6">
+            <div className="w-full h-full lg:w-7/12 ">
+                <div className="flex justify-between mx-4 sm:mx-8">
+                    <IconButton icon={faFilter} className="my-4 text-teal relative" iconClass="text-3xl"
                         onClick={toggleFilter}
                     />
                     <SortDropdown handleSort={SortBlogs} data={[...allBlogs]} />
@@ -115,13 +116,13 @@ const Blogs = () => {
                         }
                     </DialogContent>
                     <DialogActions>
-                        <AppButton content="Restart" className="bg-dark-grey" onClick={() => {
+                        <AppButton content="restart" className="bg-dark-grey" onClick={() => {
                             ResetFilter()
                             toggleFilter()
                             ResetFilter()
                             setFilteredBlog(allBlogs)
                         }} />
-                        <AppButton content="Finish" className="" onClick={() => {
+                        <AppButton content="finish" className="" onClick={() => {
                             FilterBlogs(allBlogs)
                             toggleFilter()
                         }} />
@@ -130,12 +131,19 @@ const Blogs = () => {
                 {
                     allBlogs.length > 0 ? (
                         <>
-                            {filteredBlogs.length > 0 ? <div className="grid lg:grid-cols-3 gap-16">
-                                {filteredBlogs.map((blog) => <BlogCard
-                                    item={blog}
-                                    isEdit={false}
-                                />)}
-                            </div> : <div className='my-16'>
+                            {filteredBlogs.length > 0 ? <>
+                                <div className="hidden sm:grid grid-cols-2 2xl:grid-cols-3 sm:gap-x-32 md:gap-x-36 lg:gap-16">
+                                    {filteredBlogs.map((blog) => <BlogCard
+                                        item={blog}
+                                        isEdit={false}
+                                    />)}
+                                </div>
+                                <div className='block sm:hidden'>
+                                    {filteredBlogs.map((blog) => <BlogSlide
+                                        item={blog}
+                                    />)}
+                                </div>
+                            </> : <div className='my-16'>
                                 <img
                                     src={sad_face}
                                     alt="Sad Face"
@@ -148,7 +156,7 @@ const Blogs = () => {
                     ) : <Loading />
                 }
             </div>
-            <Trending className="w-5/12 relative lg:left-16 lg:top-20" />
+            <Trending className="max-lg:hidden w-5/12 mt-20 pl-16" />
         </div>
     )
 }

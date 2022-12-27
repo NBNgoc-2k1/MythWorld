@@ -5,6 +5,8 @@ import AppButton from './AppButton';
 import { useAuth } from '../hooks'
 import { Avatar } from '@mui/material';
 import MenuDropdown from './MenuDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSortDown, faUser } from '@fortawesome/free-solid-svg-icons';
 function stringToColor(string) {
   let hash = 0;
   let i;
@@ -61,56 +63,84 @@ const Header = (props) => {
   }
 
   return (
-    <header className="bg-brown sticky shadow-md shadow-dark-grey top-0 flex z-20">
-      <div className="flex lg:ml-20 my-2 cursor-default "
+    <header className="bg-brown sticky shadow-md shadow-dark-grey top-0 flex justify-around px-0 z-20
+      md:justify-between 
+      lg:pl-10 
+      max-[414px]:justify-between
+      ">
+      <div className="flex my-2 cursor-default
+      "
       >
         <img
           src={logo}
           alt="logo"
           className="w-16 h-16"
         />
-        <p className="nav-item lg:pt-4 select-none hover:no-underline">
+        <p className="nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline">
           Myth World
-          </p>
+        </p>
       </div>
-      <div className="hidden lg:flex ml-auto mx-12">
-        <NavLink className={`nav-item lg:px-10 ${(location.pathname === '/') && 'bg-teal'}`} to="/"
+      <div className="hidden md:flex">
+        <NavLink className={`nav-item ${(location.pathname === '/') && 'bg-teal'}`} to="/"
           onClick={() => {
-            if (window.location.pathname.slice(0,4) === '/add')
+            if (window.location.pathname.slice(0, 4) === '/add')
               handleBeforeUnload()
           }}
         >
           Home
-          </NavLink>
-        <NavLink className={`nav-item lg:px-10 ${(location.pathname === '/blogs') && 'bg-teal'}`} to="blogs"
+        </NavLink>
+        <NavLink className={`nav-item ${(location.pathname === '/blogs') && 'bg-teal'}`} to="blogs"
           onClick={() => {
-            if (window.location.pathname.slice(0,4) === '/add')
+            if (window.location.pathname.slice(0, 4) === '/add')
               handleBeforeUnload()
           }}
         >
           Blogs
-          </NavLink>
-
-        {props.user && (
-          <>
-            <NavLink className={`nav-item lg:mr-12 lg:px-10 ${(location.pathname.slice(0,4) === '/add') && 'bg-teal'}`} to="add/init"
-              onClick={() => {
-                if (location.pathname.slice(5) !== 'init')
-                  handleBeforeUnload()
-              }}
-            >
-              Create Blog
-            </NavLink>
-            <div className={`cursor-pointer py-2`} onClick={() => {
-              toggleDropdownMenu()
-            }}>
-              <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />
-            </div>
-          </>
-        )}
-
+        </NavLink>
+        <NavLink className={`nav-item
+            ${props.user ? 'block' : 'hidden'}
+            ${(location.pathname.slice(0, 4) === '/add') && 'bg-teal'}`
+        }
+          to="add/init"
+          onClick={() => {
+            if (location.pathname.slice(5) !== 'init')
+              handleBeforeUnload()
+          }}
+        >
+          Create Blog
+        </NavLink>
+        <div className={`${props.user ? 'block' : 'hidden'} cursor-pointer py-2 mx-8`} onClick={() => {
+          toggleDropdownMenu()
+        }}>
+          {props.user && <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />}
+        </div>
       </div>
-        <MenuDropdown open={showProfileMenu} onClose={toggleDropdownMenu} user={props.user} />
+      <div className={`${props.user ? 'block' : 'hidden'} max-[414px]:block hidden cursor-pointer py-2 mx-8`} onClick={() => {
+        toggleDropdownMenu()
+      }}>
+        {props.user && <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />}
+      </div>
+      <div className={`${props.user ? 'block' : 'hidden'} max-[414px]:hidden block md:hidden cursor-pointer m-4`} onClick={() => {
+        toggleDropdownMenu()
+      }}>
+        {props.user && <div className="bg-teal flex md:hidden rounded-full py-1">
+          <FontAwesomeIcon
+            icon={faUser}
+            size="lg"
+            border
+            className="text-brown bg-white rounded-full ml-2"
+          />
+          <p
+            className="my-1 text-white mx-2"
+          >{props.user.username}</p>
+          <FontAwesomeIcon
+            icon={faSortDown}
+            size="md"
+            className="text-white mx-2 mt-1"
+          />
+        </div>}
+      </div>
+      <MenuDropdown open={showProfileMenu} onClose={toggleDropdownMenu} user={props.user} />
       {!props.user && <AppButton content="Login/Register" className={` lg:mr-4`} onClick={toggleOpenAuthDialog} />}
     </header>
   )
