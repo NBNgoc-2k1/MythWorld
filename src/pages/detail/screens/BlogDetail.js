@@ -88,9 +88,11 @@ const BlogDetail = (props) => {
                                         <p className="my-2 text-sm sm:text-base 2xl:text-lg sm:my-4">
                                             {formattedDate(requiredBlog.createdAt.seconds)} by {requiredBlog.author.name}
                                         </p>
-                                        <IconButton icon={isCurrentUserLike ? faHeart : faUnHeart}
-                                            className='mx-3 mt-4'
-                                            iconClass={`text-2xl ${isCurrentUserLike ? 'text-teal' : 'text-white'}`}
+                                        <IconButton icon={(isCurrentUserLike || !props.user) ? faHeart : faUnHeart}
+                                            className={`${props.user ? 'cursor-pointer' : 'cursor-default pointer-events-none'} mx-3 mt-4`}
+                                            iconClass={`text-2xl ${!props.user && 'text-teal'} 
+                                                    ${isCurrentUserLike ? 'text-teal' : 'text-white'}
+                                            `}
                                             onClick={() => toggleInteractionBlog('like')}
                                         />
                                         <p className='text-xl mt-3 mr-3'>
