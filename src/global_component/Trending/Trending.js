@@ -1,7 +1,7 @@
 import React from 'react'
 import Title from '../Title'
 import ImageMedalRank from './sub_components/ImageMedalRank'
-import BlogsList from './sub_components/BlogsList'
+import TrendingBlogs from './sub_components/TrendingBlogs'
 
 const Trending = (props) => {
 
@@ -12,7 +12,7 @@ const Trending = (props) => {
             />
             <div className="flex flex-start">
                 <ImageMedalRank />
-                <BlogsList/>
+                <TrendingBlogs/>
             </div>
         </div>
     )

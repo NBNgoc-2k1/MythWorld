@@ -8,6 +8,7 @@ import {  database } from '../firebase-config'
 export const GetSingleData = async (collection, uid) => {
     const snapshot = await getDoc(doc(database, collection, uid))
     const data = snapshot.data();
+    data.id = snapshot.id
     return data
 }
 
@@ -21,7 +22,7 @@ export const AddBlogData = async (newBlog, clearInputField) => {
                 blogRef.id
             ],
         }
-        UpdateData(currentUserInfo.uid,'users',newUserData)
+        UpdateData(currentUserInfo.uid,'users',newUserData,() => {})
         localStorage.setItem('currentUser', JSON.stringify(newUserData))
         clearInputField()
     }
@@ -45,11 +46,6 @@ export const GetAllOrderedBlogs = async (fieldPath) => {
     return blogs
 }
 
-export const GetBlogById = async (id) => {
-    const blogRef = await getDoc(doc(database, "blogs", id));
-    return blogRef.data();
-}
-
 export const DeleteBlogById = async (id) => {
     try {
         await deleteDoc(doc(database, 'blogs', id))
@@ -57,6 +53,7 @@ export const DeleteBlogById = async (id) => {
         const newUserData = {
             ...currentUserData,
             "blogs": [...currentUserData.blogs.filter(blogId => blogId !== id)],
+            "bookmark": [...currentUserData.bookmark.filter(blogId => blogId !== id)],
         }
         await updateDoc(doc(database, 'users', currentUserData.uid), newUserData)
         localStorage.setItem('currentUser',JSON.stringify(newUserData))

@@ -24,6 +24,7 @@ const Register = (props) => {
             'firstName': firstname,
             'username': `${lastname} ${firstname}`,
             "blogs": [],
+            'bookmark':[]
         }
         RegisterAPI(newUser, pass);
         props.onClose()

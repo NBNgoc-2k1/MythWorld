@@ -9,7 +9,7 @@ import ImageEdit from 'quill-image-edit-module';
 import parser from 'html-react-parser'
 import { useBlog } from '../../../hooks'
 import { useParams } from 'react-router';
-import { AddBlogData, GetBlogById, UpdateData } from '../../../api/CRUD_API';
+import { AddBlogData, GetSingleData, UpdateData } from '../../../api/CRUD_API';
 import { authentication } from '../../../firebase-config'
 import RequiredAuth from '../../requiredAuth/screens/RequiredAuth';
 import Dropdown from '../../../global_component/Dropdown/Dropdown'
@@ -68,6 +68,8 @@ const AddBlog = (props) => {
     const [blogTitle, setBlogTitle] = useState('');
     const [blogContent, setBlogContent] = useState('')
     const [blogView, setBlogView] = useState(0)
+    const [likeUsers,setLikeUsers] = useState([])
+    const [bookmarkByUser,setBookmarkByUser] = useState([])
     const [blogData, setBlogData] = useBlog()
     const { id } = useParams()
     const categoryList = ['creation', 'event', 'period', 'character', 'place']
@@ -94,6 +96,8 @@ const AddBlog = (props) => {
         setBlogContent('')
         setBlogTitle('')
         setBlogView(0)
+        setLikeUsers([])
+        setBookmarkByUser([])
         setBlogData((previousState) => {
             return {
                 ...previousState, coverPhotoSrc: ''
@@ -133,6 +137,8 @@ const AddBlog = (props) => {
         setBlogTitle(blog.blogTitle)
         setBlogContent(blog.content)
         setBlogView(blog.totalView)
+        setLikeUsers(blog.like)
+        setBookmarkByUser(blog.bookmark)
         setBlogData((previousState) => {
             return {
                 ...previousState, coverPhotoSrc: blog.coverPhoto
@@ -142,7 +148,7 @@ const AddBlog = (props) => {
 
     // Get blog data if available
     useEffect(() => {
-        GetBlogById(id).then((existedBlog) => {
+        GetSingleData('blogs',id).then((existedBlog) => {
             if (existedBlog)
                 SetBlogData(existedBlog)
             return
@@ -244,6 +250,8 @@ const AddBlog = (props) => {
                                                 name: authentication.currentUser.displayName
                                             },
                                             'totalView': blogView,
+                                            'like':likeUsers,
+                                            'bookmark':bookmarkByUser
                                         }
                                         if (id === 'init')
                                             AddBlogData(newData, clearInputField)

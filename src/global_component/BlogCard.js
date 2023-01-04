@@ -1,4 +1,4 @@
-import { faArrowRight, faEye, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faEye, faHeart, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import AppButton from './AppButton'
@@ -61,9 +61,15 @@ const BlogCard = (props) => {
                 <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl h-16">
                     {props.item.blogTitle}
                 </p>
-                <div className="flex">
-                    <FontAwesomeIcon icon={faEye} className="text-white mt-2 md:mt-1" />
-                    <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
+                <div className='flex'>
+                    <div className="flex">
+                        <FontAwesomeIcon icon={faEye} className="text-white mt-2" />
+                        <p className="text-white text-lg ml-1">{props.item.totalView}</p>
+                    </div>
+                    <div className="flex ml-4">
+                        <FontAwesomeIcon icon={faHeart} className="text-white mt-2" />
+                        <p className="text-white text-lg ml-1">{props.item.like.length}</p>
+                    </div>
                 </div>
                 <p className="text-white max-md:hidden text-base">
                     {datePost}
@@ -99,10 +105,8 @@ const BlogCard = (props) => {
 }
 
 BlogCard.propTypes = {
-    avtSrc: PropTypes.string.isRequired,
+    item: PropTypes.object.isRequired,
     isEdit: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    updateDate: PropTypes.number.isRequired,
 }
 
 export default BlogCard

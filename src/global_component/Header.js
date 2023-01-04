@@ -135,7 +135,7 @@ const Header = (props) => {
           >{props.user.username}</p>
           <FontAwesomeIcon
             icon={faSortDown}
-            size="md"
+            size="lg"
             className="text-white mx-2 mt-1"
           />
         </div>}

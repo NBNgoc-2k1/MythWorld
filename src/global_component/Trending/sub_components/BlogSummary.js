@@ -1,4 +1,4 @@
-import { faArrowRight, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router';
@@ -41,8 +41,8 @@ const BlogSummary = (props) => {
                     <p className="text-md text-white ml-6">{datePost}
                     </p>
                     <div className="flex my-2">
-                        <FontAwesomeIcon icon={faEye} className="text-white ml-6 mt-2" />
-                        <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
+                        <FontAwesomeIcon icon={faHeart} className="text-white ml-6 mt-2" />
+                        <p className="text-white text-lg ml-2 ">{props.item.like.length}</p>
                     </div>
                 </div>
                 <IconButton icon={faArrowRight} className="bg-teal w-12 h-12 mb-3" iconClass="text-white text-xl m-3.5"

@@ -16,6 +16,7 @@ import UserProfilePage from './pages/profile/screens/UserProfilePage';
 import ChangePassword from './pages/profile/screens/ChangePassword';
 import MyBlogs from './pages/blogs/screens/MyBlogs';
 import BlogDetail from './pages/detail/screens/BlogDetail';
+import Bookmark from './pages/bookmark/screens/Bookmark';
 
 const theme = createTheme({
   typography: {
@@ -84,7 +85,24 @@ const router = createBrowserRouter([
       },
       {
         path:'/blogs/:id',
-        element: <BlogDetail />,
+        element: <BlogDetail user={currentUser}/>,
+        errorElement: <Error />
+      },
+      {
+        path:'/abouts',
+        errorElement: <Error />
+      },
+      {
+        path:'/help',
+        errorElement: <Error />
+      },
+      {
+        path:'/privacy',
+        errorElement: <Error />
+      },
+      {
+        path:'/bookmark',
+        element:<Bookmark user={currentUser}/>,
         errorElement: <Error />
       }
     ]

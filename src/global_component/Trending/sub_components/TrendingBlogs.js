@@ -3,11 +3,11 @@ import { GetAllOrderedBlogs } from '../../../api/CRUD_API'
 import BlogSummary from './BlogSummary'
 import PropTypes from 'prop-types'
 
-const BlogsList = (props) => {
+const TrendingBlogs = (props) => {
     const [trendingBlog, setTrendingBlog] = useState([])
 
     useEffect(() => {
-        GetAllOrderedBlogs('totalView').then((orderByViewBlogs) => {
+        GetAllOrderedBlogs('like').then((orderByViewBlogs) => {
             setTrendingBlog(orderByViewBlogs.slice(0, 3))
         })
     }, [props.currentBlogId])
@@ -23,4 +23,4 @@ const BlogsList = (props) => {
     )
 }
 
-export default BlogsList
+export default TrendingBlogs

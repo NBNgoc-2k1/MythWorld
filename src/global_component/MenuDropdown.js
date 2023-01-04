@@ -1,4 +1,4 @@
-import { faArrowRightFromBracket, faBlog, faKey, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket, faBlog, faBookmark, faKey, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Avatar } from '@mui/material'
 import React from 'react'
@@ -55,7 +55,7 @@ const MenuDropdown = (props) => {
         >
             <div className={` rounded-lg w-72
                 absolute bg-teal top-20 border-2 border-solid border-white
-                right-[3vw] sm:right-[13vw] md:right-[3vw] lg:right-28 max-[414px]:right-[6vw]
+                right-[3vw] sm:right-[13vw] md:right-[3vw] lg:right-16 max-[414px]:right-[6vw]
             `}>
                 <span className="absolute right-3 -top-3"
                     style={{
@@ -98,7 +98,6 @@ const MenuDropdown = (props) => {
                         </Link>
                     </div>
                     <div className="flex my-4"
-
                     >
                         <FontAwesomeIcon icon={faBlog} size="lg" color="white" />
                         <Link className="text-white no-underline ml-4
@@ -112,6 +111,22 @@ const MenuDropdown = (props) => {
 
                         >
                             My Blogs
+                        </Link>
+                    </div>
+                    <div className="flex mb-4"
+                    >
+                        <FontAwesomeIcon icon={faBookmark} size="lg" color="white" />
+                        <Link className="text-white no-underline ml-5
+                        hover:underline underline-offset-4 decoration-2"
+                            to='bookmark'
+                            onClick={() => {
+                                if (location.pathname === '/add/init')
+                                    handleBeforeUnload()
+                                props.onClose()
+                            }}
+
+                        >
+                            My Bookmark
                         </Link>
                     </div>
                     <div className="flex mb-4"
