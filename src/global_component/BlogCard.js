@@ -1,4 +1,4 @@
-import { faArrowRight, faEye, faHeart, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClock, faEye, faHeart, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import AppButton from './AppButton'
@@ -71,14 +71,16 @@ const BlogCard = (props) => {
                         <p className="text-white text-lg ml-1">{props.item.like.length}</p>
                     </div>
                 </div>
-                <p className="text-white max-md:hidden text-base">
-                    {datePost}
-                </p>
-                <div className='flex justify-between items-end'>
-                    <p className="text-white block text-base md:hidden">
-                        {datePost}
-                    </p>
-                    <IconButton icon={faArrowRight} className='md:hidden bg-teal h-9 w-9' iconClass='text-white m-2.5'
+                <div className="hidden md:flex">
+                    <FontAwesomeIcon icon={faClock} className="text-white mt-2 mr-2" />
+                    <p className="text-white text-lg ml-1">{datePost}</p>
+                </div>
+                <div className='flex justify-between items-end md:hidden'>
+                    <div className="flex">
+                        <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
+                        <p className="text-white md:text-lg ml-1">{datePost}</p>
+                    </div>
+                    <IconButton icon={faArrowRight} className='md:hidden bg-teal h-10 w-10' iconClass='text-white text-lg m-3'
                         onClick={() => {
                             navigation(`/blogs/${props.item.id}`)
                         }}

@@ -1,4 +1,4 @@
-import { faArrowRight, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClock, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -23,14 +23,17 @@ const BlogSlide = (props) => {
             <div className='flex items-center justify-evenly w-full w-64'>
                 <div className="flex flex-col mt-4 ml-4">
                     <p className="text-lg min-[361px]:text-xl text-white">{props.item.blogTitle}</p>
-                    <p className="text-sm min-[361px]:text-base mb-2.5 text-white">{datePost}
-                    </p>
+                    <div className="flex">
+                        <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
+                        <p className="text-sm ml-1 min-[361px]:text-base text-white">{datePost}
+                        </p>
+                    </div>
                     <div className="flex my-2">
-                        <FontAwesomeIcon icon={faEye} className="text-white mt-2" />
+                        <FontAwesomeIcon icon={faEye} className="text-white mt-1" />
                         <p className="text-white ml-2 ">{props.item.totalView}</p>
                     </div>
                 </div>
-                <IconButton icon={faArrowRight} className="bg-teal w-12 h-12 mt-12" iconClass="text-white text-xl m-3.5" 
+                <IconButton icon={faArrowRight} className="bg-teal w-12 h-12 mt-12" iconClass="text-white text-xl m-3.5"
                     onClick={() => navigation(`/blogs/${props.item.id}`)}
                 />
             </div>

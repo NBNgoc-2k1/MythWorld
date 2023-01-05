@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import AppButton from '../../../global_component/AppButton'
-import { faArrowRight, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClock, faEye } from '@fortawesome/free-solid-svg-icons'
 import '../../add/editor.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '../../../global_component/IconButton';
@@ -32,7 +32,11 @@ const FeaturedBlog1 = (props) => {
                     lg:text-4xl">
                     {props.item.blogTitle}
                 </p>
-                <p className="text-sm block sm:hidden mb-2.5 text-white">{datePost}</p>
+                <div className="flex">
+                    <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
+                    <p className="text-sm ml-1 min-[361px]:text-base text-white">{datePost}
+                    </p>
+                </div>                
                 <div className="flex sm:hidden w-full items-center justify-between">
                     <div className='flex'>
                         <FontAwesomeIcon icon={faEye} className="text-white mt-2" />
