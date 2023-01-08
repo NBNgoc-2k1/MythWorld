@@ -32,7 +32,7 @@ const FeaturedBlog1 = (props) => {
                     lg:text-4xl">
                     {props.item.blogTitle}
                 </p>
-                <div className="max-sm:flex">
+                <div className="flex sm:hidden">
                     <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
                     <p className="text-sm ml-1 min-[361px]:text-base text-white">{datePost}
                     </p>
