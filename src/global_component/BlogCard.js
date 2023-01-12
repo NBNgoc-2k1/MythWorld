@@ -25,7 +25,7 @@ const BlogCard = (props) => {
     }, [])
 
     return (
-        <div className="bg-brown rounded-2xl w-48 sm:w-52 md:w-64
+        <div className="bg-brown rounded-2xl w-48 sm:w-52    md:w-64
             lg:w-72 m-4
         ">
             <div className="relative min-[414px]:h-32
@@ -80,7 +80,8 @@ const BlogCard = (props) => {
                         <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
                         <p className="text-white md:text-lg ml-1">{datePost}</p>
                     </div>
-                    <IconButton icon={faArrowRight} className='md:hidden bg-teal h-10 w-10' iconClass='text-white text-lg m-3'
+                    <IconButton icon={faArrowRight} className='h-8 w-8 md:hidden bg-teal md:h-10 md:w-10' 
+                        iconClass='text-white text-lg m-2 md:m-3'
                         onClick={() => {
                             navigation(`/blogs/${props.item.id}`)
                         }}
