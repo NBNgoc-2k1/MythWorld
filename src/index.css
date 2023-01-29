@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 body {
   margin: 0;
-  font-family: 'Finger Paint', cursive;
+  font-family: 'Itim', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

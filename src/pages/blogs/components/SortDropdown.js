@@ -37,7 +37,7 @@ const SortDropdown = (props) => {
                 setDropdownOpen(!isDropdownOpen)
             }}
             >
-                <p className="text-xl text-dark-grey my-2">{selectedValue}</p>
+                <p className="text-xl sm:text-2xl text-dark-grey my-2">{selectedValue}</p>
                 {
                     isDropdownOpen
                         ? <FontAwesomeIcon icon={faSortUp} size="2x" className="text-teal block mt-3" />
@@ -47,15 +47,15 @@ const SortDropdown = (props) => {
             {
                 isDropdownOpen && <div className="flex flex-col divide-y divide-dark-grey
                     bg-dark-silver z-10 w-48 relative rounded-b-xl">
-                    <p className="text-xl text-dark-grey cursor-pointer py-2 hover:bg-teal hover:text-white px-4"
+                    <p className="text-xl sm:text-2xl text-dark-grey cursor-pointer py-2 hover:bg-teal hover:text-white px-4"
                         onClick={HandleClick}
                     >
                         Newest</p>
-                    <p className="text-xl text-dark-grey cursor-pointer py-2 hover:bg-teal hover:text-white px-4"
+                    <p className="text-xl sm:text-2xl text-dark-grey cursor-pointer py-2 hover:bg-teal hover:text-white px-4"
                         onClick={HandleClick}
                     >
                         Highest View</p>
-                    <p className="text-xl text-dark-grey py-2 cursor-pointer hover:bg-teal hover:text-white hover:rounded-b-xl px-4"
+                    <p className="text-xl sm:text-2xl text-dark-grey py-2 cursor-pointer hover:bg-teal hover:text-white hover:rounded-b-xl px-4"
                         onClick={HandleClick}
                     >
                         Oldest</p>

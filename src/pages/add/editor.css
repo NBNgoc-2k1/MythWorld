@@ -1,8 +1,12 @@
 /* Set default font-family */
 .ql-container.ql-snow{
-    font-family: 'Finger Paint', cursive;
-    font-size: 16px;
+    font-family: 'Itim', cursive;
+    font-size:20px;
     height: 350px;
+}
+
+.ql-snow{
+    font-size:20px;
 }
 
 .ql-editor p {

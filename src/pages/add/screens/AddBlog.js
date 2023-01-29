@@ -68,8 +68,8 @@ const AddBlog = (props) => {
     const [blogTitle, setBlogTitle] = useState('');
     const [blogContent, setBlogContent] = useState('')
     const [blogView, setBlogView] = useState(0)
-    const [likeUsers,setLikeUsers] = useState([])
-    const [bookmarkByUser,setBookmarkByUser] = useState([])
+    const [likeUsers, setLikeUsers] = useState([])
+    const [bookmarkByUser, setBookmarkByUser] = useState([])
     const [blogData, setBlogData] = useBlog()
     const { id } = useParams()
     const categoryList = ['creation', 'event', 'period', 'character', 'place']
@@ -148,7 +148,7 @@ const AddBlog = (props) => {
 
     // Get blog data if available
     useEffect(() => {
-        GetSingleData('blogs',id).then((existedBlog) => {
+        GetSingleData('blogs', id).then((existedBlog) => {
             if (existedBlog)
                 SetBlogData(existedBlog)
             return
@@ -178,7 +178,7 @@ const AddBlog = (props) => {
                                 setSuccessedPublish(false)
                             }}
                         >
-                            <Alert
+                            <Alert sx={{fontSize:'20'}}
                                 variant="filled"
                                 severity="success"
                                 onClose={() => {
@@ -198,6 +198,8 @@ const AddBlog = (props) => {
                                     variant="standard"
                                     placeholder="Enter Blog Title"
                                     onChange={(e) => setBlogTitle(e.target.value)}
+                                    inputProps={{ style: { fontSize: 20 } }}
+                                    InputLabelProps={{ style: { fontSize: 20 } }}
                                 />
                             </div>
                             <div className="lg:flex justify-between items-start my-4">
@@ -250,8 +252,8 @@ const AddBlog = (props) => {
                                                 name: authentication.currentUser.displayName
                                             },
                                             'totalView': blogView,
-                                            'like':likeUsers,
-                                            'bookmark':bookmarkByUser
+                                            'like': likeUsers,
+                                            'bookmark': bookmarkByUser
                                         }
                                         if (id === 'init')
                                             AddBlogData(newData, clearInputField)

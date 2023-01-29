@@ -13,7 +13,7 @@ const BottomNav = (props) => {
     };
 
     return (
-        <div className='md:hidden bg-brown flex justify-center fixed bottom-0 left-0 right-0 w-full text-xl'>
+        <div className='md:hidden bg-brown flex justify-center fixed bottom-0 left-0 right-0 w-full'>
             <NavLink className={`nav-item ${(location.pathname === '/') && 'bg-teal'}`} to="/"
                 onClick={() => {
                     if (window.location.pathname.slice(0, 4) === '/add')

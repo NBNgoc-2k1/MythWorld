@@ -9,7 +9,7 @@ const FilterValue = (props) => {
     )
     return (
         <div className={`rounded-full border-2 p-1 border-solid border-brown
-            hover:bg-brown hover:text-white cursor-pointer
+            hover:bg-brown hover:text-white cursor-pointer text-lg
             ${(isSelected === true && filterData.unselectAll === false) ? 'bg-brown text-white' : 'bg-white text-dark-grey'}
         `}
             onClick={() => {

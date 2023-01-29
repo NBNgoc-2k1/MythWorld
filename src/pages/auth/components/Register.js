@@ -55,7 +55,7 @@ const Register = (props) => {
 
     return (
         <div className="flex flex-col items-center justify-center mt-4">
-            <div className="flex mt-3 mb-2 max-[414px]:text-xs">
+            <div className="flex mt-3 mb-2 text-lg max-[414px]:text-sm">
                 <p>Already have an account?</p>
                 <p onClick={() => {
                     toggleAuthState('login')
@@ -64,7 +64,7 @@ const Register = (props) => {
             hover:decoration-brown hover:underline hover:decoration-2 hover:underline-offset-8"
                 >Login</p>
             </div>
-            <div className="flex my-2 sm:my-4 text-base sm:text-xl 2xl:text-2xl">
+            <div className="flex my-2 sm:my-4 text-lg sm:text-2xl">
                 <p className=" mr-2">Create Your</p>
                 <Link
                     underline="none"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BlogCard from '../../../global_component/BlogCard'
 import sad_face from '../../../assets/images/error_image/sad_face.png'
 import Loading from '../../../global_component/Loading';
@@ -9,14 +9,19 @@ import BlogSlide from '../../../global_component/BlogSlide';
 
 const Bookmark = (props) => {
     const [bookmarkedBlogs, setBookmarkedBlogs] = useState([]);
+    const isEffectRan = useRef(false)
 
     useEffect(() => {
-        props.user.bookmark.map(blogId =>
-            GetSingleData('blogs', blogId).then(bookmarkedBlog => {
-                setBookmarkedBlogs([...bookmarkedBlogs,bookmarkedBlog])
-            })
-        )
+        if (props.user && !isEffectRan.current){
+            props.user.bookmark.map(blogId => 
+                GetSingleData('blogs', blogId).then(bookmarkedBlog => {
+                    setBookmarkedBlogs(prevBlogs => [...prevBlogs,bookmarkedBlog])
+                })
+            )
+            isEffectRan.current = true
+        }
     }, [])
+
 
     return (
         <>
@@ -40,14 +45,14 @@ const Bookmark = (props) => {
                                 />
                                 {(bookmarkedBlogs.length > 0) ? (
                                     <>
-                                        <div className={`lg:pt-10 lg:pl-10 hidden
-                                            ${bookmarkedBlogs.length < 4 ? 'min-[414px]:flex justify-around'
-                                                : 'min-[414px]:grid grid-cols-2 lg:grid-cols-3 gap-4'} `}
+                                        <div className={`lg:pt-10 pl-10 hidden sm:max-lg:ml-[3.5%]
+                                            ${bookmarkedBlogs.length < 4 ? 'sm:flex justify-around'
+                                                : 'sm:grid grid-cols-2 lg:grid-cols-3 xl:max-2xl:gap-x-20 2xl:grid-cols-4'} `}
                                         >
                                             {bookmarkedBlogs.map((blog) => <BlogCard item={blog} isEdit={false}
                                             />)}
                                         </div>
-                                        <div className={`lg:pt-10 lg:pl-10 min-[414px]:hidden`}>
+                                        <div className={`lg:pt-10 lg:pl-10 sm:hidden`}>
                                             {bookmarkedBlogs.map((blog) => <BlogSlide item={blog} isEdit={false}
                                             />)}
                                         </div>

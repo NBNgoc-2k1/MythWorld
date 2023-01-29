@@ -27,10 +27,10 @@ const Intro = (props) => {
                 max-md:absolute md:w-5/12 md:top-0 md:ml-10 md:bg-transparent md:opacity-100 md:top-48 
                 lg:ml-20
             `}>
-                <p className="text-2xl text-white my-3">
+                <p className="text-3xl text-white my-3">
                     WELCOME!
                 </p>
-                <p className="text-white text-xs lg:text-base
+                <p className="text-white text-base lg:text-lg
                     2xl:w-7/12
                     xl:w-2/3
                     md:w-5/6

@@ -26,9 +26,11 @@ const Blogs = () => {
         const categoryList = filterData.selectedValue.category
         const regionsList = filterData.selectedValue.regions
 
+        const date = new Date(blog.createdAt.seconds * 1000);
+        const year = date.getFullYear()
 
         const hasAuthor = authorList.length > 0 ? authorList.includes(blog.author.name) : true
-        const hasYear = yearList.length > 0 ? yearList.includes(blog.year) : true
+        const hasYear = yearList.length > 0 ? yearList.includes(year) : true
         const hasCategory = categoryList.length > 0 ? categoryList.includes(blog.category) : true
         const hasRegion = regionsList.length > 0 ? regionsList.includes(blog.region) : true
 
@@ -150,7 +152,7 @@ const Blogs = () => {
                                     className="m-auto"
                                 />
                                 <p className="text-center text-4xl mt-8"
-                                >Oops...!</p>
+                                >Oops...! We don't have any myth story now</p>
                             </div>}
                         </>
                     ) : <Loading />

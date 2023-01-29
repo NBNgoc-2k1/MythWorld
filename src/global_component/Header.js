@@ -141,7 +141,7 @@ const Header = (props) => {
         </div>}
       </div>
       <MenuDropdown open={showProfileMenu} onClose={toggleDropdownMenu} user={props.user} />
-      {!props.user && <AppButton content="Login/Register" className={` lg:mr-4`} onClick={toggleOpenAuthDialog} />}
+      {!props.user && <AppButton content="Login/Register" className={`max-[360px]:mr-2 lg:mr-4`} onClick={toggleOpenAuthDialog} />}
     </header>
   )
 }

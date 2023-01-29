@@ -23,7 +23,7 @@ const SortDropdown = (props) => {
     return (
         <div className={`flex flex-col h-12 ${props.className}`}
         >
-            <label className={`text-xs relative 
+            <label className={`text-sm relative 
                 w-[4.5rem] top-2 left-2 
                 ${!isDropdownOpen ? 'text-brown' : 'text-dark-grey'}
                 text-center z-10 block bg-light-silver`}>{props.label}</label>
@@ -34,7 +34,7 @@ const SortDropdown = (props) => {
                     setDropdownOpen(!isDropdownOpen)
                 }}
             >
-                <p className="sm:text-xl my-2 capitalize">{selectedValue}</p>
+                <p className="text-2xl my-2 capitalize">{selectedValue}</p>
                 {
                     isDropdownOpen
                         ? <FontAwesomeIcon icon={faSortUp} size="2x" className="text-teal lg:block mt-3" />
@@ -48,7 +48,7 @@ const SortDropdown = (props) => {
                     bg-light-silver z-10 rounded-lg`}>
                 {
                     props.dataSet.map(data =>
-                        <p className="sm:text-xl cursor-pointer py-2 capitalize hover:bg-teal hover:text-white px-4"
+                        <p className="text-2xl cursor-pointer py-2 capitalize hover:bg-teal hover:text-white px-4"
                             onClick={HandleClick}
                         >{data}</p>
                     )

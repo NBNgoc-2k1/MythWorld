@@ -28,7 +28,7 @@ const BlogDetail = (props) => {
                         : props.user[field].push(id)
                 }
                 localStorage.setItem('currentUser', JSON.stringify(props.user))
-                UpdateData(props.user.uid,'users',JSON.stringify(props.user),() => {})
+                UpdateData(props.user.uid,'users',JSON.parse(localStorage.getItem('currentUser')),() => {})
                 break;
             case 'like':
                 {
@@ -48,7 +48,7 @@ const BlogDetail = (props) => {
             setRequiredBlog(returnedBlog)
             setCurrentUserLike(returnedBlog.like.indexOf(props.user.uid) !== -1 ? true : false)
             setCurrentUserBookmark(props.user.bookmark.indexOf(id) !== -1 ? true : false)
-            UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
+            // UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
             GetAllOrderedBlogs('createdAt').then((allBlogs) => {
                 var tempBlogs = allBlogs
                     .filter(blog => blog.author.uid === returnedBlog.author.uid)
@@ -57,6 +57,7 @@ const BlogDetail = (props) => {
                 setSameAuthorBlogs(tempBlogs)
             })
         })
+        .catch(error => setRequiredBlog(undefined))
     }, [id])
 
     const options = {
@@ -89,18 +90,18 @@ const BlogDetail = (props) => {
                                             {formattedDate(requiredBlog.createdAt.seconds)} by {requiredBlog.author.name}
                                         </p>
                                         <IconButton icon={(isCurrentUserLike || !props.user) ? faHeart : faUnHeart}
-                                            className={`${props.user ? 'cursor-pointer' : 'cursor-default pointer-events-none'} mx-3 mt-4`}
-                                            iconClass={`text-2xl ${!props.user && 'text-teal'} 
+                                            className={`${props.user ? 'cursor-pointer' : 'cursor-default pointer-events-none'} mx-3 mt-2 sm:mt-4`}
+                                            iconClass={`text-xl sm:text-2xl ${!props.user && 'text-teal'} 
                                                     ${isCurrentUserLike ? 'text-teal' : 'text-white'}
                                             `}
                                             onClick={() => toggleInteractionBlog('like')}
                                         />
-                                        <p className='text-xl mt-3 mr-3'>
+                                        <p className='text-xl sm:text-3xl mt-1 sm:mt-2 mr-3'>
                                             {requiredBlog.like.length}
                                         </p>
                                         {props.user && <IconButton icon={isCurrentUserBookmark ? faBookmark : faUnBookmark}
-                                            className='mx-2 mt-3.5'
-                                            iconClass={`text-2xl ${isCurrentUserBookmark ? 'text-teal' : 'text-white'}`}
+                                            className='mx-2 mt-2 sm:mt-3.5'
+                                            iconClass={`text-xl sm:text-2xl ${isCurrentUserBookmark ? 'text-teal' : 'text-white'}`}
                                             onClick={() => toggleInteractionBlog('bookmark')}
                                         />}
                                     </div>

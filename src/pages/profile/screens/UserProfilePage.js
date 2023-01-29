@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Avatar, TextField } from '@mui/material';
 import AppButton from '../../../global_component/AppButton';
 import isEmail from 'validator/lib/isEmail';
@@ -42,7 +42,7 @@ const UpdateUserInfo = (currentUser, email, firstname, lastname, setFill) => {
         return
     }
     var updateUser = {
-        ...currentUser,'userEmail': email,
+        ...currentUser, 'userEmail': email,
         'lastName': lastname,
         'firstName': firstname,
         'username': `${lastname} ${firstname}`,
@@ -58,15 +58,27 @@ const UpdateUserInfo = (currentUser, email, firstname, lastname, setFill) => {
         })
     })
 
-    
+
 }
 
 const UserProfilePage = (props) => {
-    const [email, setEmail] = useState(props.user.userEmail);
-    const [lastname, setLastname] = useState(props.user.lastName);
-    const [firstname, setFirstname] = useState(props.user.firstName);
+    const [email, setEmail] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [firstname, setFirstname] = useState('');
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     const [isFilled, setFilled] = useState(true)
+
+    const SetUserInfo = () => {
+        setEmail(props.user.userEmail)
+        setLastname(props.user.lastName)
+        setFirstname(props.user.firstName)
+    }
+
+    useEffect(() => {
+        if (props.user){
+            SetUserInfo()
+        }
+    },[])
 
     return (
         <>
@@ -76,7 +88,7 @@ const UserProfilePage = (props) => {
                         Please don't empty any information field !!! Thank you
                     </Alert>}
                     <div className="flex flex-col items-center justify-center my-12">
-                        <p className="text-brown text-3xl">Account Settings</p>
+                        <p className="text-brown text-4xl lg:text-5xl">Account Settings</p>
                         <div className="rounded-3xl w-80 my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center
                             sm:w-96
                         ">
@@ -90,6 +102,9 @@ const UserProfilePage = (props) => {
                                 margin="normal"
                                 value={firstname}
                                 variant="standard"
+                                inputProps={{ style: { fontSize: 20 } }}
+                                InputLabelProps={{ style: { fontSize: 20 } }}
+
                             />
                             <TextField
                                 id="outlined-lastname-input"
@@ -100,6 +115,9 @@ const UserProfilePage = (props) => {
                                 onChange={(event) => setLastname(event.target.value)}
                                 variant="standard"
                                 margin="normal"
+                                inputProps={{ style: { fontSize: 20 } }}
+                                InputLabelProps={{ style: { fontSize: 20 } }}
+
                             />
                             <TextField
                                 id="outlined-email-input"
@@ -110,6 +128,9 @@ const UserProfilePage = (props) => {
                                 onChange={(event) => setEmail(event.target.value)}
                                 margin="normal"
                                 variant="standard"
+                                inputProps={{ style: { fontSize: 20 } }}
+                                InputLabelProps={{ style: { fontSize: 20 } }}
+
                             />
                         </div>
                         <AppButton content="save changes" onClick={() => {

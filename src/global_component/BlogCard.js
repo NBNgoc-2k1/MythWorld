@@ -40,7 +40,7 @@ const BlogCard = (props) => {
                 {props.isEdit && (
                     <div className=''>
                         <IconButton
-                            className="blogcard_iconbtn min-[414px]:left-[80%] lg:left-[85%]"
+                            className="blogcard_iconbtn sm:left-[80%] lg:left-[85%]"
                             icon={faPen}
                             iconClass="text-base md:text-lg"
                             onClick={() => navigation(`/add/${props.item.id}`)}
@@ -48,7 +48,7 @@ const BlogCard = (props) => {
                         />
                         <IconButton
                             icon={faTrashAlt}
-                            className="blogcard_iconbtn min-[414px]:left-[56%] sm:left-[60%] lg:left-[68%]"
+                            className="blogcard_iconbtn sm:left-[60%] lg:left-[68%]"
                             iconClass="text-base md:text-lg"
                             onClick={() => {
                                 toggleConfirmPopup()
@@ -58,30 +58,30 @@ const BlogCard = (props) => {
                 )}
             </div>
             <div className="m-4">
-                <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl h-16">
+                <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl">
                     {props.item.blogTitle}
                 </p>
                 <div className='flex'>
                     <div className="flex">
-                        <FontAwesomeIcon icon={faEye} className="text-white mt-2" />
+                        <FontAwesomeIcon icon={faEye} className="text-white mt-1.5" />
                         <p className="text-white text-lg ml-1">{props.item.totalView}</p>
                     </div>
                     <div className="flex ml-4">
-                        <FontAwesomeIcon icon={faHeart} className="text-white mt-2" />
+                        <FontAwesomeIcon icon={faHeart} className="text-white mt-1.5" />
                         <p className="text-white text-lg ml-1">{props.item.like.length}</p>
                     </div>
                 </div>
                 <div className="hidden md:flex">
-                    <FontAwesomeIcon icon={faClock} className="text-white mt-2 mr-2" />
-                    <p className="text-white text-lg ml-1">{datePost}</p>
+                    <FontAwesomeIcon icon={faClock} className="text-white mt-1.5 mr-1" />
+                    <p className="text-white text-lg">{datePost}</p>
                 </div>
                 <div className='flex justify-between items-end md:hidden'>
                     <div className="flex">
                         <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
                         <p className="text-white md:text-lg ml-1">{datePost}</p>
                     </div>
-                    <IconButton icon={faArrowRight} className='h-8 w-8 md:hidden bg-teal md:h-10 md:w-10' 
-                        iconClass='text-white text-lg m-2 md:m-3'
+                    <IconButton icon={faArrowRight} className='h-9 w-9 md:hidden bg-teal' 
+                        iconClass='text-white text-lg m-2.5 md:m-3'
                         onClick={() => {
                             navigation(`/blogs/${props.item.id}`)
                         }}
@@ -92,13 +92,13 @@ const BlogCard = (props) => {
                 }} />
             </div>
             <Dialog open={confirmDelete} onClose={toggleConfirmPopup}>
-                <DialogTitle className="bg-brown text-center text-white">Delete Blog</DialogTitle>
-                <DialogContent sx={{ marginTop: '1.25em' }}>
+                <DialogTitle className="bg-brown text-center text-white" sx={{ fontSize:'1.5rem'}}>Delete Blog</DialogTitle>
+                <DialogContent sx={{ marginTop: '1.25em',fontSize:'1.25rem' }}>
                     <p className="">Are you sure you want to delete this blog?</p>
                 </DialogContent>
                 <DialogActions>
                     <AppButton content="cancel" onClick={() => toggleConfirmPopup()} />
-                    <AppButton content="confim" className="bg-dark-grey" onClick={() => {
+                    <AppButton content="confirm" className="bg-dark-grey" onClick={() => {
                         DeleteBlogById(props.item.id)
                     }} />
                 </DialogActions>

@@ -1,12 +1,29 @@
-import { faArrowRight, faClock, faEye, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClock, faEllipsis, faEye, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Menu, MenuItem, Dialog, DialogTitle, DialogActions, DialogContent } from '@mui/material';
+import AppButton from './AppButton'
+import { DeleteBlogById } from '../api/CRUD_API'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import IconButton from './IconButton';
 
 const BlogSlide = (props) => {
     const [datePost, setDatePost] = useState('')
+    const [anchorEl, setAnchorEl] = useState(null)
+    const openMenu = Boolean(anchorEl)
     const navigation = useNavigate()
+    const [confirmDelete, setConfirmDelete] = useState(false);
+
+    const toggleConfirmPopup = () => {
+        setConfirmDelete(!confirmDelete)
+    }
+
+    const OpenBlogMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const CloseBlogMenu = () => {
+        setAnchorEl(null);
+    };
 
     useEffect(() => {
         const date = new Date(props.item.createdAt.seconds * 1000);
@@ -20,12 +37,12 @@ const BlogSlide = (props) => {
             <img className="m-0 w-28 min-[361px]:w-32 h-auto rounded-l-2xl"
                 src={props.item.coverPhoto}
             />
-            <div className='flex items-center justify-evenly w-full'>
+            <div className='flex items-center justify-evenly w-full mr-1'>
                 <div className="flex flex-col w-40 min-[414px]:w-44 mt-4 ml-2 sm:ml-4">
-                    <p className="text-lg min-[361px]:text-xl text-white">{props.item.blogTitle}</p>
+                    <p className="text-xl text-white">{props.item.blogTitle}</p>
                     <div className="flex">
                         <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mt-2 md:mr-2" />
-                        <p className="text-sm ml-1 min-[361px]:text-base text-white">{datePost}
+                        <p className="ml-1 text-white">{datePost}
                         </p>
                     </div>
                     <div className='flex'>
@@ -39,12 +56,44 @@ const BlogSlide = (props) => {
                         </div>
                     </div>
                 </div>
-                <IconButton icon={faArrowRight} 
-                    className="bg-teal w-9 h-9 min-[414px]:w-10 min-[414px]:w-10 mt-12" 
-                    iconClass="text-white text-xl m-2.5"
-                    onClick={() => navigation(`/blogs/${props.item.id}`)}
-                />
+                <div className='flex flex-col h-full justify-evenly'>
+                    <IconButton icon={faEllipsis}
+                        className='ml-1.5'
+                        iconClass='text-white text-3xl mt-1.5'
+                        onClick={OpenBlogMenu}
+                    />
+                    <Menu open={openMenu}
+                        anchorEl={anchorEl}
+                        onClose={CloseBlogMenu}
+                    >
+                        <MenuItem onClick={() => {
+                            navigation(`/add/${props.item.id}`)
+                            CloseBlogMenu()
+                        }}>Edit</MenuItem>
+                        <MenuItem onClick={() => {
+                            toggleConfirmPopup()
+                            CloseBlogMenu()
+                        }}>Delete</MenuItem>
+                    </Menu>
+                    <IconButton icon={faArrowRight}
+                        className="bg-teal w-10 h-10"
+                        iconClass="text-white text-xl m-3"
+                        onClick={() => navigation(`/blogs/${props.item.id}`)}
+                    />
+                </div>
             </div>
+            <Dialog open={confirmDelete} onClose={toggleConfirmPopup}>
+                <DialogTitle className="bg-brown text-center text-white" sx={{ fontSize: '1.5rem' }}>Delete Blog</DialogTitle>
+                <DialogContent sx={{ marginTop: '1.25em', fontSize: '1.25rem' }}>
+                    <p className="">Are you sure you want to delete this blog?</p>
+                </DialogContent>
+                <DialogActions>
+                    <AppButton content="cancel" onClick={() => toggleConfirmPopup()} />
+                    <AppButton content="confirm" className="bg-dark-grey" onClick={() => {
+                        DeleteBlogById(props.item.id)
+                    }} />
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }

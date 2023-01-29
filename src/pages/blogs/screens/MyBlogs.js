@@ -30,18 +30,18 @@ const MyBlogs = (props) => {
                             </diV>
                         ) : (
                             <>
-                                <Title title="My Blogs" className="mt-10 justify-center text-lg sm:text-2xl md:text-3xl"
+                                <Title title="My Blogs" className="mt-10 justify-center text-xl sm:text-3xl md:text-4xl"
                                     barClass='w-24 sm:w-44'
                                 />
                                 {(currentUserBlogs.length > 0) ? (
                                     <>
                                         <div className={`lg:pt-10 lg:pl-10 hidden
-                                        ${currentUserBlogs.length < 4 ? 'min-[414px]:flex justify-around' 
-                                            : 'min-[414px]:grid grid-cols-2 lg:grid-cols-3 gap-4'} `}>
+                                        ${currentUserBlogs.length < 4 ? 'sm:flex justify-around' 
+                                            : 'sm:grid grid-cols-2 lg:grid-cols-3 gap-4'} `}>
                                             {currentUserBlogs.map((blog) => <BlogCard item={blog} isEdit={true}
                                             />)}
                                         </div>
-                                        <div className={`lg:pt-10 lg:pl-10 min-[414px]:hidden`}>
+                                        <div className={`lg:pt-10 lg:pl-10 sm:hidden`}>
                                             {currentUserBlogs.map((blog) => <BlogSlide item={blog} isEdit={true}
                                             />)}
                                         </div>

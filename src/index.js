@@ -21,7 +21,7 @@ import Bookmark from './pages/bookmark/screens/Bookmark';
 const theme = createTheme({
   typography: {
     fontFamily: [
-      'Finger Paint',
+      'Itim',
       'cursive'
     ].join(',')
   },

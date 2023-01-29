@@ -12,10 +12,10 @@ import './slider-style.css'
 const BlogPart = (props) => {
     return (
         <div className="bg-light-silver">
-            <Title title={props.title} className="my-4 capitalize text-xl justify-center
+            <Title title={props.title} className="my-4 capitalize text-2xl justify-center
                 sm:my-8
-                md:text-3xl
-                max-[414px]:text-base
+                md:text-4xl
+                max-[414px]:text-xl
             "
                 barClass='w-24 sm:w-44'
             />

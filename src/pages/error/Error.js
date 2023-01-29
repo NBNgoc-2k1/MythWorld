@@ -11,13 +11,14 @@ const Error = () => {
                 <img
                     src={taiji}
                     alt="Taiji"
-                    className="max-sm:w-44  m-0"
+                    className="max-sm:w-44 m-0"
                 />
                 <p className="text-brown text-[10rem] sm:text-[14rem]">4</p>
             </div>
-            <div className="flex flex-col mx-auto items-baseline justify-center w-3/4x lg:w-5/12">
+            <div className="flex flex-col mx-auto items-baseline justify-center w-3/4 lg:w-5/12">
                 <p className="max-lg:hidden text-brown text-3xl xl:text-4xl">SOMETHING WENT WRONG</p>
-                <p className="max-lg:mx-auto w-full min-[414px]:w-10/12 max-lg:text-center lg:my-8">
+                <p className="text-lg min-[414px]:text-xl sm:w-3/4
+                max-lg:mx-auto max-lg:text-center lg:my-6">
                     We are very sorry for inconvenience.
                     It looks you're trying to access a page that either has been deleted or never been existed.
                 </p>

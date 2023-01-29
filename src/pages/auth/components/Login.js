@@ -32,7 +32,7 @@ const Login = (props) => {
 
     return (
         <div className="flex flex-col items-center justify-center my-16">
-            <div className="flex max-[414px]:text-sm">
+            <div className="flex text-lg max-[414px]:text-base">
                 <p>Don't have an account?</p>
                 <p onClick={() => {
                     toggleAuthState('register')
@@ -41,7 +41,7 @@ const Login = (props) => {
                     hover:decoration-brown hover:underline hover:decoration-2 hover:underline-offset-8"
                 >Register</p>
             </div>
-            <div className="flex my-4 text-2xl">
+            <div className="flex my-4 text-3xl">
                 <p className="mr-2">Login to</p>
                 <Link
                     underline="none"
@@ -85,7 +85,7 @@ const Login = (props) => {
                 <p onClick={() => {
                     toggleAuthState('reset')
                 }}
-                    className="ml-2 text-dark-grey cursor-pointer text-center
+                    className="ml-2 text-dark-grey cursor-pointer text-center text-lg
                     hover:decoration-dark-grey hover:underline hover:decoration-2 hover:underline-offset-8"
                 >Forgot your password?</p>
             </div>

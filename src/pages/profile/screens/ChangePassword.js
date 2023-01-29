@@ -4,7 +4,7 @@ import AppButton from '../../../global_component/AppButton';
 import { authentication } from '../../../firebase-config'
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from '@firebase/auth';
 import { LogoutAPI } from '../../../api/AuthAPI'
-import RequireAuth from '../../requiredAuth/screens/RequiredAuth'
+import RequiredAuth from '../../requiredAuth/screens/RequiredAuth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const ChangePassword = (props) => {
@@ -55,8 +55,8 @@ const ChangePassword = (props) => {
                             Confirm password and new password are't same - <strong>check it out!</strong>
                         </Alert>}
                         <div className="flex flex-col items-center justify-center my-12">
-                            <p className="text-brown text-3xl">Change Password</p>
-                            <div className="w-[22rem] rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
+                            <p className="text-brown text-4xl min-[414px]:text-5xl">Change Password</p>
+                            <div className="w-[20rem] min-[414px]:w-[22rem] rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
                                 <TextField
                                     id="outlined-firstname-input"
                                     label="Old Password"
@@ -67,7 +67,7 @@ const ChangePassword = (props) => {
                                     value={oldPassword}
                                     variant="standard"
                                 />
-                                <FormControl variant="standard" size='small' sx={{width:'53%'}}>
+                                <FormControl variant="standard" className='max-[360px]:w-3/5 w-[55%]' size='small' >
                                     <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
                                     <Input
                                         id="outlined-adornment-password"
@@ -87,7 +87,7 @@ const ChangePassword = (props) => {
                                         label="New Password"
                                     />
                                 </FormControl>
-                                <FormControl variant="standard" margin='normal' size='small' sx={{width:'53%'}}>
+                                <FormControl variant="standard" className='max-[360px]:w-3/5 w-[55%]' margin='normal' size='small' >
                                     <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
                                     <Input
                                         id="outlined-adornment-password"
@@ -107,7 +107,6 @@ const ChangePassword = (props) => {
                                         label="Confirm Password"
                                     />
                                 </FormControl>
-
                             </div>
                             <AppButton content="save" disabled={!((newPassword !== '') && (confirmPassword === newPassword))}
                                 onClick={() => {
@@ -131,7 +130,7 @@ const ChangePassword = (props) => {
                         </Snackbar>
                     </>
                 ) : (
-                    <RequireAuth />
+                    <RequiredAuth />
                 )
             }
         </div>

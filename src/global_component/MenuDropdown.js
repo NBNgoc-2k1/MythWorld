@@ -46,7 +46,7 @@ const MenuDropdown = (props) => {
     };
 
     return (
-        <div className={`${props.open ? 'flex' : 'hidden'} w-full h-screen absolute`}
+        <div className={`${props.open ? 'flex' : 'hidden'} w-full h-screen absolute left-0`}
             onClick={(e) => {
                 if (e.currentTarget === e.target) {
                     props.onClose();
@@ -55,7 +55,7 @@ const MenuDropdown = (props) => {
         >
             <div className={` rounded-lg w-72
                 absolute bg-teal top-20 border-2 border-solid border-white
-                right-[3vw] sm:right-[13vw] md:right-[3vw] lg:right-16 max-[414px]:right-[6vw]
+                right-[3vw] sm:right-[13vw] md:right-[3vw] lg:right-6 max-[414px]:right-[6vw]
             `}>
                 <span className="absolute right-3 -top-3"
                     style={{
@@ -73,11 +73,11 @@ const MenuDropdown = (props) => {
                     ></span>
                 </span>
                 {props.user && <div className="flex pl-2 py-2 border-b-white border-b-2 w-full">
-                    <Avatar {...stringAvatar(`${props.user.username}`)} className='my-3' />
-                    <div className="flex flex-col text-sm my-3 pl-2">
+                    <Avatar {...stringAvatar(`${props.user.username}`)} className='my-4' />
+                    <div className="flex flex-col text-base my-3 pl-2">
                         <p className="text-white "
                         >{props.user.username}</p>
-                        <p className="text-white w-2/3"
+                        <p className="text-white"
                         >{props.user.userEmail}</p>
                     </div>
                 </div>}
@@ -85,8 +85,8 @@ const MenuDropdown = (props) => {
                 >
                     <div className="flex mt-4"
                     >
-                        <FontAwesomeIcon icon={faUser} size="lg" color="white" />
-                        <Link className="text-white no-underline ml-4 hover:underline underline-offset-4 decoration-2"
+                        <FontAwesomeIcon icon={faUser} size="xl" color="white" />
+                        <Link className="text-white text-lg no-underline ml-4 hover:underline underline-offset-4 decoration-2"
                             to='/profile'
                             onClick={() => {
                                 if (location.pathname === '/add/init')
@@ -99,9 +99,8 @@ const MenuDropdown = (props) => {
                     </div>
                     <div className="flex my-4"
                     >
-                        <FontAwesomeIcon icon={faBlog} size="lg" color="white" />
-                        <Link className="text-white no-underline ml-4
-                        hover:underline underline-offset-4 decoration-2"
+                        <FontAwesomeIcon icon={faBlog} size="xl" color="white" />
+                        <Link className="text-white text-lg no-underline ml-4 hover:underline underline-offset-4 decoration-2"
                             to='my-blogs'
                             onClick={() => {
                                 if (location.pathname === '/add/init')
@@ -115,9 +114,8 @@ const MenuDropdown = (props) => {
                     </div>
                     <div className="flex mb-4"
                     >
-                        <FontAwesomeIcon icon={faBookmark} size="lg" color="white" />
-                        <Link className="text-white no-underline ml-5
-                        hover:underline underline-offset-4 decoration-2"
+                        <FontAwesomeIcon icon={faBookmark} size="xl" color="white" />
+                        <Link className="text-white text-lg no-underline ml-5 hover:underline underline-offset-4 decoration-2"
                             to='bookmark'
                             onClick={() => {
                                 if (location.pathname === '/add/init')
@@ -131,9 +129,8 @@ const MenuDropdown = (props) => {
                     </div>
                     <div className="flex mb-4"
                     >
-                        <FontAwesomeIcon icon={faKey} size="lg" color="white" />
-                        <Link className="text-white no-underline ml-4 
-                        hover:underline underline-offset-4 decoration-2"
+                        <FontAwesomeIcon icon={faKey} size="xl" color="white" />
+                        <Link className="text-white text-lg no-underline ml-4 hover:underline underline-offset-4 decoration-2"
                             to='/password'
                             onClick={() => {
                                 if (location.pathname === '/add/init')
@@ -149,9 +146,8 @@ const MenuDropdown = (props) => {
                         navigation('/')
                         window.location.reload()
                     }}>
-                        <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" color="white" />
-                        <Link className="text-white no-underline ml-4 
-                        hover:underline underline-offset-4 decoration-2">
+                        <FontAwesomeIcon icon={faArrowRightFromBracket} size="xl" color="white" />
+                        <Link className="text-white text-lg no-underline ml-4 hover:underline underline-offset-4 decoration-2">
                             Log out
                         </Link>
                     </div>

@@ -78,7 +78,7 @@ const Reset = () => {
                     Email has never registered. Check email you typed
                 </Alert>
             </Snackbar>
-            <div className="flex my-4 sm:text-2xl ">
+            <div className="flex my-4 text-lg sm:text-2xl ">
                 <p className="mr-2">Reset Your</p>
                 <Link
                     underline="none"
@@ -105,7 +105,7 @@ const Reset = () => {
                 />
 
             </div>
-            <div className="flex">
+            <div className="flex sm:text-lg">
                 <p>Back to</p>
                 <p onClick={() => {
                     toggleAuthState('login')

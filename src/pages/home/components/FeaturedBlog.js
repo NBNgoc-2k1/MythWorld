@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import AppButton from '../../../global_component/AppButton'
-import { faArrowRight, faClock, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClock, faEye, faHeart } from '@fortawesome/free-solid-svg-icons'
 import '../../add/editor.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IconButton from '../../../global_component/IconButton';
@@ -27,9 +27,9 @@ const FeaturedBlog1 = (props) => {
                 lg:ml-20
             ">
                 <p className="mt-2 text-white
-                    text-lg
-                    sm:text-2xl
-                    lg:text-4xl">
+                    text-xl
+                    sm:text-3xl
+                    lg:text-5xl">
                     {props.item.blogTitle}
                 </p>
                 <div className="flex sm:hidden">
@@ -40,15 +40,18 @@ const FeaturedBlog1 = (props) => {
                 <div className="flex sm:hidden w-full items-center justify-between">
                     <div className='flex'>
                         <FontAwesomeIcon icon={faEye} className="text-white mt-2" />
-                        <p className="text-white text-lg ml-2 ">{props.item.totalView}</p>
+                        <p className="text-white text-lg ml-1 mr-2">{props.item.totalView}</p>
+                        <FontAwesomeIcon icon={faHeart} className="text-white mt-2" />
+                        <p className="text-white text-lg ml-1 mr-2">{props.item.like.length}</p>
                     </div>
                     <IconButton icon={faArrowRight} className="bg-teal w-10 h-10" iconClass="text-white text-xl m-3"
                         onClick={props.onClick}
                     />
                 </div>
-                <span className='text-white text-sm w-3/4 hidden sm:line-clamp-2
+                <span className='text-white text-base w-3/4 hidden 
+                    sm:line-clamp-2
                     md:line-clamp-3
-                    lg:text-base lg:w-4/5 lg:my-6'
+                    lg:text-lg lg:w-4/5 lg:my-6'
                 >
                     {props.item.content.split('</p>')[0].replace('<p>', '')}
                 </span>
