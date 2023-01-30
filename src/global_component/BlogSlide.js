@@ -56,9 +56,9 @@ const BlogSlide = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col h-full justify-evenly'>
+                <div className={`${props.isEdit && 'flex'} flex-col h-full justify-evenly `}>
                     <IconButton icon={faEllipsis}
-                        className='ml-1.5'
+                        className={`${!props.isEdit && 'hidden'} ml-1.5`}
                         iconClass='text-white text-3xl mt-1.5'
                         onClick={OpenBlogMenu}
                     />
@@ -76,7 +76,7 @@ const BlogSlide = (props) => {
                         }}>Delete</MenuItem>
                     </Menu>
                     <IconButton icon={faArrowRight}
-                        className="bg-teal w-10 h-10"
+                        className={`${!props.isEdit && 'mt-14'} bg-teal w-10 h-10`}
                         iconClass="text-white text-xl m-3"
                         onClick={() => navigation(`/blogs/${props.item.id}`)}
                     />

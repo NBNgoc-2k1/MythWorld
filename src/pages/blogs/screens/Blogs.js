@@ -19,6 +19,7 @@ const Blogs = () => {
     const [showFilter, setShowFilter] = useState(false)
     const [filterData, setFilterData] = useFilter()
     const [filterValueSet, setFilterValueSet] = useState()
+    const [pageState, setPageState] = useState('blogs')
 
     const CheckBlogHasFilterValue = (blog) => {
         const authorList = filterData.selectedValue.author
@@ -98,67 +99,88 @@ const Blogs = () => {
         })
     }
 
+    const ChangePageState = (newState) => {
+        setPageState(newState)
+    }
+
     return (
-        <div className="flex mt-6">
-            <div className="w-full h-full lg:w-7/12 ">
-                <div className="flex justify-between mx-4 sm:mx-8">
-                    <IconButton icon={faFilter} className="my-4 text-teal relative" iconClass="text-3xl"
-                        onClick={toggleFilter}
-                    />
-                    <SortDropdown handleSort={SortBlogs} data={[...allBlogs]} />
+        <div>
+            <div className='mt-8 sm:mx-8 flex justify-center text-3xl lg:hidden'>
+                <div className={`rounded-full px-6 w-1/3 sm:w-1/2 cursor-pointer ${pageState === 'blogs' ? 'bg-teal' : ''}`}
+                    onClick={() => ChangePageState('blogs')}
+                >
+                    <p className={`text-center py-3 
+                    ${pageState === 'blogs' ? 'text-white' : 'text-dark-grey'}`}>Blogs</p>
                 </div>
-                <Dialog open={showFilter} onClose={toggleFilter}>
-                    <DialogContent>
-                        {filterValueSet && <>
-                            <FilterWrapper attributeName="Author" values={RemoveDuplicateItem(filterValueSet.author)} />
-                            <FilterWrapper attributeName="Year" values={RemoveDuplicateItem(filterValueSet.year)} />
-                            <FilterWrapper attributeName="Category" values={RemoveDuplicateItem(filterValueSet.category)} />
-                            <FilterWrapper attributeName="Regions" values={RemoveDuplicateItem(filterValueSet.regions)} />
-                        </>
-                        }
-                    </DialogContent>
-                    <DialogActions>
-                        <AppButton content="restart" className="bg-dark-grey" onClick={() => {
-                            ResetFilter()
-                            toggleFilter()
-                            ResetFilter()
-                            setFilteredBlog(allBlogs)
-                        }} />
-                        <AppButton content="finish" className="" onClick={() => {
-                            FilterBlogs(allBlogs)
-                            toggleFilter()
-                        }} />
-                    </DialogActions>
-                </Dialog>
-                {
-                    allBlogs.length > 0 ? (
-                        <>
-                            {filteredBlogs.length > 0 ? <>
-                                <div className="hidden sm:grid grid-cols-2 2xl:grid-cols-3 sm:gap-x-32 md:gap-x-36 lg:gap-16">
-                                    {filteredBlogs.map((blog) => <BlogCard
-                                        item={blog}
-                                        isEdit={false}
-                                    />)}
-                                </div>
-                                <div className='block sm:hidden'>
-                                    {filteredBlogs.map((blog) => <BlogSlide
-                                        item={blog}
-                                    />)}
-                                </div>
-                            </> : <div className='my-16'>
-                                <img
-                                    src={sad_face}
-                                    alt="Sad Face"
-                                    className="m-auto"
-                                />
-                                <p className="text-center text-4xl mt-8"
-                                >Oops...! We don't have any myth story now</p>
-                            </div>}
-                        </>
-                    ) : <Loading />
-                }
+                <div className={`rounded-full px-6 sm:w-1/2 cursor-pointer ${pageState === 'favourite' ? 'bg-teal' : ''}`}
+                    onClick={() => ChangePageState('favourite')}
+                >
+                    <p className={`text-center py-3 
+                    ${pageState === 'favourite' ? 'text-white' : 'text-dark-grey'}`}>Favourite</p>
+                </div>
             </div>
-            <Trending className="max-lg:hidden w-5/12 mt-20 pl-16" />
+            <div className="flex mt-6">
+                <div className={`w-full h-full lg:w-7/12 ${pageState === 'blogs' ? 'block' : 'max-lg:hidden'}`}>
+                    <div className="flex justify-between mx-4 sm:mx-8">
+                        <IconButton icon={faFilter} className="my-4 text-teal relative" iconClass="text-3xl"
+                            onClick={toggleFilter}
+                        />
+                        <SortDropdown handleSort={SortBlogs} data={[...allBlogs]} />
+                    </div>
+                    <Dialog open={showFilter} onClose={toggleFilter}>
+                        <DialogContent>
+                            {filterValueSet && <>
+                                <FilterWrapper attributeName="Author" values={RemoveDuplicateItem(filterValueSet.author)} />
+                                <FilterWrapper attributeName="Year" values={RemoveDuplicateItem(filterValueSet.year)} />
+                                <FilterWrapper attributeName="Category" values={RemoveDuplicateItem(filterValueSet.category)} />
+                                <FilterWrapper attributeName="Regions" values={RemoveDuplicateItem(filterValueSet.regions)} />
+                            </>
+                            }
+                        </DialogContent>
+                        <DialogActions>
+                            <AppButton content="restart" className="bg-dark-grey" onClick={() => {
+                                ResetFilter()
+                                toggleFilter()
+                                ResetFilter()
+                                setFilteredBlog(allBlogs)
+                            }} />
+                            <AppButton content="finish" className="" onClick={() => {
+                                FilterBlogs(allBlogs)
+                                toggleFilter()
+                            }} />
+                        </DialogActions>
+                    </Dialog>
+                    {
+                        allBlogs.length > 0 ? (
+                            <>
+                                {filteredBlogs.length > 0 ? <>
+                                    <div className="hidden sm:grid grid-cols-2 2xl:grid-cols-3 sm:gap-x-32 md:gap-x-36 lg:gap-10">
+                                        {filteredBlogs.map((blog) => <BlogCard
+                                            item={blog}
+                                            isEdit={false}
+                                        />)}
+                                    </div>
+                                    <div className='block sm:hidden'>
+                                        {filteredBlogs.map((blog) => <BlogSlide
+                                            item={blog}
+                                            isEdit={false}
+                                        />)}
+                                    </div>
+                                </> : <div className='my-16'>
+                                    <img
+                                        src={sad_face}
+                                        alt="Sad Face"
+                                        className="m-auto"
+                                    />
+                                    <p className="text-center text-4xl mt-8"
+                                    >Oops...! We don't have any myth story now</p>
+                                </div>}
+                            </>
+                        ) : <Loading />
+                    }
+                </div>
+                <Trending className={`${pageState === 'favourite' ? 'flex flex-col' : 'max-lg:hidden mt-20 pl-16'} w-full lg:w-5/12 `} />
+            </div>
         </div>
     )
 }

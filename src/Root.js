@@ -48,7 +48,7 @@ const Root = (props) => {
                 <Outlet />
             </div>
             <IconButton icon={faArrowUp}
-                className={`fixed ${visible ? 'inline' : 'hidden'} right-8 bottom-[10vh] md:bottom-[6vh] bg-teal w-14 h-14 `}
+                className={`fixed ${visible ? 'inline' : 'hidden'} right-8 bottom-[12vh] sm:bottom-[10vh] md:bottom-[6vh] bg-teal w-14 h-14 `}
                 onClick={scrollToTop}
                 iconClass="text-white my-3 mx-4 text-3xl"
             />

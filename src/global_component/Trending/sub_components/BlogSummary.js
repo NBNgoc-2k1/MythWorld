@@ -29,10 +29,10 @@ const BlogSummary = (props) => {
     }, [])
 
     return (
-        <div className="flex my-4 bg-brown w-64 xl:w-[23rem] 2xl:w-[30rem] rounded-2xl"
-            style={{backgroundImage: (windowWidth < 1280) ? `url(${props.item.coverPhoto})` : 'none'}}
+        <div className="flex my-4 bg-brown max-sm:w-64 w-[23rem] 2xl:w-[30rem] rounded-2xl"
+            style={{backgroundImage: ((windowWidth < 1280 && windowWidth > 1024) || windowWidth < 640) ? `url(${props.item.coverPhoto})` : 'none'}}
         >
-            <img className="m-0 w-28 2xl:w-32 h-auto rounded-l-2xl max-xl:hidden"
+            <img className="m-0 w-28 2xl:w-32 h-auto rounded-l-2xl max-sm:hidden lg:max-xl:hidden"
                 src={props.item.coverPhoto}
             />
             <div className="flex items-end xl:justify-evenly w-full">

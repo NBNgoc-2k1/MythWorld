@@ -25,7 +25,7 @@ const BlogCard = (props) => {
     }, [])
 
     return (
-        <div className="bg-brown rounded-2xl w-48 sm:w-52    md:w-64
+        <div className="bg-brown rounded-2xl w-48 sm:w-52 md:w-64
             lg:w-72 m-4
         ">
             <div className="relative min-[414px]:h-32
@@ -38,7 +38,7 @@ const BlogCard = (props) => {
                     className="rounded-t-2xl w-full h-full"
                 />
                 {props.isEdit && (
-                    <div className=''>
+                    <div>
                         <IconButton
                             className="blogcard_iconbtn sm:left-[80%] lg:left-[85%]"
                             icon={faPen}
