@@ -46,8 +46,10 @@ const BlogDetail = (props) => {
     useEffect(() => {
         GetSingleData('blogs',id).then((returnedBlog) => {
             setRequiredBlog(returnedBlog)
-            setCurrentUserLike(returnedBlog.like.indexOf(props.user.uid) !== -1 ? true : false)
-            setCurrentUserBookmark(props.user.bookmark.indexOf(id) !== -1 ? true : false)
+            if (props.user) {
+                setCurrentUserLike(returnedBlog.like.indexOf(props.user.uid) !== -1 ? true : false)
+                setCurrentUserBookmark(props.user.bookmark.indexOf(id) !== -1 ? true : false)
+            }
             UpdateData(id, 'blogs', { ...returnedBlog, totalView: returnedBlog.totalView + 1 }, () => { })
             GetAllOrderedBlogs('createdAt').then((allBlogs) => {
                 var tempBlogs = allBlogs
