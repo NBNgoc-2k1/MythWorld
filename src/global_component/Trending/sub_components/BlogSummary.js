@@ -40,7 +40,7 @@ const BlogSummary = (props) => {
                     <p className="text-xl 2xl:text-3xl text-white ml-6">{props.item.blogTitle}</p>
                     <div className="flex ml-6">
                         <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mr-2" />
-                        <p className="text-md text-white">{datePost}</p>
+                        <p className="text-md text-white ml-2">{datePost}</p>
                     </div>
                     <div className="flex my-2">
                         <FontAwesomeIcon icon={faHeart} className="text-white ml-6 mt-2" />
