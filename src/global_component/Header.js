@@ -107,7 +107,7 @@ const Header = (props) => {
               handleBeforeUnload()
           }}
         >
-          Create Blog
+          Create
         </NavLink>
         <div className={`${props.user ? 'block' : 'hidden'} cursor-pointer py-2 mx-8`} onClick={() => {
           toggleDropdownMenu()

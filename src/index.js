@@ -17,6 +17,7 @@ import ChangePassword from './pages/profile/screens/ChangePassword';
 import MyBlogs from './pages/blogs/screens/MyBlogs';
 import BlogDetail from './pages/detail/screens/BlogDetail';
 import Bookmark from './pages/bookmark/screens/Bookmark';
+import AboutUs from './pages/aboutus/screens/AboutUs';
 
 const theme = createTheme({
   typography: {
@@ -90,6 +91,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/abouts',
+        element: <AboutUs />,
         errorElement: <Error />
       },
       {

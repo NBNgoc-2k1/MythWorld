@@ -84,7 +84,7 @@ const UserProfilePage = (props) => {
         <>
             {props.user ? (
                 <>
-                    {!isFilled && <Alert severity="warning" className="w-2/5 mt-4 ml-4">
+                    {!isFilled && <Alert severity="warning" className="w-4/5 sm:w-2/5 mt-4 ml-4">
                         Please don't empty any information field !!! Thank you
                     </Alert>}
                     <div className="flex flex-col items-center justify-center my-12">
@@ -92,7 +92,7 @@ const UserProfilePage = (props) => {
                         <div className="rounded-3xl w-80 my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center
                             sm:w-96
                         ">
-                            <Avatar {...stringAvatar(`${lastname} ${firstname}`)} className='my-3' />
+                            <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />
                             <TextField
                                 id="outlined-firstname-input"
                                 label="Firstname"

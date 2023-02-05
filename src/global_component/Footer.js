@@ -92,7 +92,7 @@ const Footer = () => {
             </div>
             <div className="max-[414px]:hidden flex flex-col items-start justify-around md:my-10">
                 <Link className="text-footer
-                hover:underline underline-offset-4 decoration-2">
+                hover:underline underline-offset-4 decoration-2" to='/abouts'>
                     About us
                 </Link>
                 <Link className="text-footer

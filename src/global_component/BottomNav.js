@@ -40,7 +40,7 @@ const BottomNav = (props) => {
                         handleBeforeUnload()
                 }}
             >
-                Create Blog
+                Create
             </NavLink>
         </div>
     )

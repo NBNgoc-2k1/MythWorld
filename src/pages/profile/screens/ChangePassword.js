@@ -48,10 +48,10 @@ const ChangePassword = (props) => {
             {
                 props.user ? (
                     <>
-                        {!oldPassCorrect && <Alert severity="error" variant="filled" className="w-2/5 mt-4 ml-4" onClose={() => { setOldPassCorrect(true) }}>
+                        {!oldPassCorrect && <Alert severity="error" variant="filled" sx={{fontSize:'20'}} className="w-4/5 sm:w-2/5 mt-4 ml-4" onClose={() => { setOldPassCorrect(true) }}>
                             Old password is incorrect - <strong>check it out!</strong>
                         </Alert>}
-                        {(newPassword !== confirmPassword) && <Alert severity="error" variant="filled" className="w-2/5 mt-4 ml-4">
+                        {(newPassword !== confirmPassword) && <Alert severity="error" variant="filled" className="w-4/5  sm:w-2/5 mt-4 ml-4">
                             Confirm password and new password are't same - <strong>check it out!</strong>
                         </Alert>}
                         <div className="flex flex-col items-center justify-center my-12">

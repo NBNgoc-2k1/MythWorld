@@ -54,7 +54,7 @@ const Reset = () => {
                     setSendSuccess(false)
                 }}
             >
-                <Alert variant="filled"
+                <Alert variant="filled" sx={{fontSize:'20'}}
                     severity="success"
                     onClose={() => {
                         setSendSuccess(false)
@@ -70,7 +70,7 @@ const Reset = () => {
                     setUserExist(true)
                 }}
             >
-                <Alert variant="filled"
+                <Alert variant="filled" sx={{fontSize:'20'}}
                     severity="error"
                     onClose={() => {
                         setUserExist(true)
