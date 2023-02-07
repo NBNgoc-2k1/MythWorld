@@ -35,8 +35,7 @@ const Intro = (props) => {
                     xl:w-2/3
                     md:w-5/6
                 ">
-                    A worldwide mythological blog for those interested in the subject. Register today never miss any article
-                    and write your blogs.
+                    A blog about mysteries for lovers worldwide. Sign up today to share your story with everybody.
                 </p>
                 {!props.user && <AppButton content="Login/Register" onClick={toggleOpenAuthDialog} />}
             </div>
