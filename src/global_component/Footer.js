@@ -43,7 +43,7 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className="flex flex-col items-start justify-around md:my-10">
-                    <Link to='/about'
+                    <Link to='/aboutus'
                         className="text-footer
                 hover:underline underline-offset-4 decoration-2">
                         About us
@@ -92,7 +92,7 @@ const Footer = () => {
             </div>
             <div className="max-[414px]:hidden flex flex-col items-start justify-around md:my-10">
                 <Link className="text-footer
-                hover:underline underline-offset-4 decoration-2" to='/abouts'>
+                hover:underline underline-offset-4 decoration-2" to='/aboutus'>
                     About us
                 </Link>
                 <Link className="text-footer

@@ -29,8 +29,8 @@ const BlogSummary = (props) => {
     }, [])
 
     return (
-        <div className="flex my-4 bg-brown max-sm:w-64 w-[23rem] 2xl:w-[30rem] rounded-2xl"
-            style={{backgroundImage: ((windowWidth < 1280 && windowWidth > 1024) || windowWidth < 640) ? `url(${props.item.coverPhoto})` : 'none'}}
+        <div className="flex my-4 bg-brown max-sm:w-64 w-[23rem] lg:max-xl:w-64 2xl:w-[30rem] rounded-2xl"
+            style={{backgroundImage: ((windowWidth < 1280 && windowWidth >= 1024) || windowWidth < 640) ? `url(${props.item.coverPhoto})` : 'none'}}
         >
             <img className="m-0 w-28 2xl:w-32 h-auto rounded-l-2xl max-sm:hidden lg:max-xl:hidden"
                 src={props.item.coverPhoto}
@@ -39,7 +39,7 @@ const BlogSummary = (props) => {
                 <div className="flex flex-col mt-4 w-48 2xl:w-[18rem]">
                     <p className="text-xl 2xl:text-3xl text-white ml-6">{props.item.blogTitle}</p>
                     <div className="flex ml-6">
-                        <FontAwesomeIcon icon={faClock} className="text-white mt-1 md:mr-2" />
+                        <FontAwesomeIcon icon={faClock} className="text-white mt-1" />
                         <p className="text-md text-white ml-2">{datePost}</p>
                     </div>
                     <div className="flex my-2">
