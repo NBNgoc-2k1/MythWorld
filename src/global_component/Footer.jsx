@@ -37,10 +37,12 @@ const Footer = () => {
                             xl:text-4xl
                         " />
                     </div>
-                    <p className="max-[414px]:hidden block md:hidden text-footer md:mt-36">
-                        Copyright <FontAwesomeIcon icon={faCopyright} /> 2022
+                    <div className='flex'>
+                        <p className="max-[414px]:hidden block md:hidden text-footer md:mt-36">
+                            Copyright <FontAwesomeIcon icon={faCopyright} /> 2022
+                        </p>
                         <p className='text-footer max-md:hidden '> All rights reserved</p>
-                    </p>
+                    </div>
                 </div>
                 <div className="flex flex-col items-start justify-around md:my-10">
                     <Link to='/aboutus'
@@ -85,10 +87,12 @@ const Footer = () => {
                             xl:text-4xl
                         " />
                 </div>
-                <p className="block md:hidden text-footer md:mt-36">
-                    Copyright <FontAwesomeIcon icon={faCopyright} /> 2022
+                <div className='flex'>
+                    <p className="max-[414px]:hidden block md:hidden text-footer md:mt-36">
+                        Copyright <FontAwesomeIcon icon={faCopyright} /> 2022
+                    </p>
                     <p className='text-footer max-md:hidden '> All rights reserved</p>
-                </p>
+                </div>
             </div>
             <div className="max-[414px]:hidden flex flex-col items-start justify-around md:my-10">
                 <Link className="text-footer

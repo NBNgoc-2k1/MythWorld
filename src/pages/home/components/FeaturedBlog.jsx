@@ -62,9 +62,7 @@ const FeaturedBlog1 = (props) => {
 }
 
 FeaturedBlog1.propTypes = {
-    avatarSrc: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    item:PropTypes.object.isRequired
 }
 
 export default FeaturedBlog1

@@ -15,7 +15,8 @@ const TrendingBlogs = (props) => {
     return (
         <div className="flex flex-col justify-evenly">
             {
-                trendingBlog.map((blog,index) => <BlogSummary
+                trendingBlog.map(blog => <BlogSummary
+                    key={blog.id}
                     item={blog}
                 />)
             }

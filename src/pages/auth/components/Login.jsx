@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import AppButton from '../../../global_component/AppButton'
 import isEmail from 'validator/lib/isEmail';
 import { LoginAPI } from '../../../api/AuthAPI'
-import { authentication } from '../../../firebase-config';
-import { useAuth, useUser } from '../../../hooks'
+import { useAuth } from '../../../hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 

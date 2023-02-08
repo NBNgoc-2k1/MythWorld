@@ -23,7 +23,7 @@ const BlogPart = (props) => {
                 props.data.length > 0 ? (
                     <>
                         <div className="hidden sm:flex flex-row justify-evenly items-center">
-                            {props.data.map((blog) => <BlogCard item={blog} isEdit={false}
+                            {props.data.map((blog) => <BlogCard item={blog} isEdit={false} key={blog.id}
                             />)}
                         </div>
                         <Swiper className='sm:hidden h-48'
@@ -38,8 +38,8 @@ const BlogPart = (props) => {
                                 props.data.map((blog) => {
 
                                     return (
-                                        <SwiperSlide>
-                                            <BlogSlide item={blog} />
+                                        <SwiperSlide key={blog.id}>
+                                            <BlogSlide item={blog}/>
                                         </SwiperSlide>
                                     )
                                 })

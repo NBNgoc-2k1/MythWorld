@@ -156,12 +156,14 @@ const Blogs = () => {
                                 {filteredBlogs.length > 0 ? <>
                                     <div className="hidden sm:grid grid-cols-2 2xl:grid-cols-3 sm:gap-x-32 md:gap-x-36 lg:gap-10">
                                         {filteredBlogs.map((blog) => <BlogCard
+                                            key={blog.id}
                                             item={blog}
                                             isEdit={false}
                                         />)}
                                     </div>
                                     <div className='block sm:hidden'>
                                         {filteredBlogs.map((blog) => <BlogSlide
+                                            key={blog.id}
                                             item={blog}
                                             isEdit={false}
                                         />)}

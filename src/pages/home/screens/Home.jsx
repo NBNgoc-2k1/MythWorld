@@ -25,6 +25,7 @@ const Home = (props) => {
             {twoHighestViewBlog.length > 0 && <>
                 {
                     twoHighestViewBlog.map((blog,index) => <FeaturedBlog className={`${index > 0 ? 'flex-row-reverse' : ''}`}
+                        key={blog.id}
                         item={blog}
                         onClick={() => {
                             navigation(`/blogs/${blog.id}`)

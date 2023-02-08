@@ -25,7 +25,7 @@ const AppButton = (props) => {
 
 AppButton.propTypes = {
     content: PropTypes.string.isRequired,
-    icon: PropTypes.string,
+    icon: PropTypes.object,
     onClick: PropTypes.func.isRequired,
     className: PropTypes.string,
     iconClassName: PropTypes.string,
