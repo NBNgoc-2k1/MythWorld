@@ -74,10 +74,10 @@ const Header = (props) => {
         <img
           src={logo}
           alt="logo"
-          className="w-16 h-16"
+          className="w-16 h-16 mt-1.5"
         />
         <p className={`${!props.user && 'max-[414px]:hidden'} nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline`}>
-          Myth World
+          Mysticala
         </p>
       </div>
       <div className="hidden md:flex">
