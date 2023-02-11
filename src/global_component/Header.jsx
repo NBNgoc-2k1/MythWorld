@@ -1,4 +1,4 @@
-import logo from '../assets/images/global_images/small_logo.png'
+import logo from '../assets/images/global_images/logo.png'
 import React, { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom';
 import AppButton from './AppButton';
@@ -74,7 +74,7 @@ const Header = (props) => {
         <img
           src={logo}
           alt="logo"
-          className="w-16 h-16 mt-1.5"
+          className="w-16 h-16 mt-1.5 mx-2"
         />
         <p className={`${!props.user && 'max-[414px]:hidden'} nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline`}>
           Mysticala

@@ -1,4 +1,4 @@
-import auth_image from '../../../assets/images/auth_images/cosmic+shiva+by+android+jones.jpg'
+import auth_image from '../../../assets/images/auth_images/poster.png'
 import React from 'react'
 import Login from '../components/Login'
 import Register from '../components/Register'
@@ -26,16 +26,13 @@ const AuthDialog = () => {
                 top-[15%]
                 sm:top-[27%]
                 lg:top-[20%]
-                xl:top-[14%]
-                xl:left-[80%]
-            ' iconClass='text-3xl text-teal lg:text-white'
+                xl:left-[80%]'
+                iconClass='text-3xl text-teal lg:text-white'
                 onClick={toggleOpenAuthDialog}
             />
-            <div className="flex w-5/6 bg-light-silver rounded-xl h-[73%]
-                sm:h-1/2 sm:w-4/5
-                lg:h-2/3
-                xl:h-3/4 xl:w-2/3
-                2xl:h-[75%]
+            <div className="flex w-5/6 bg-light-silver rounded-xl
+                sm:w-4/5
+                xl:w-2/3
             ">
                 <div className="w-full lg:w-5/12 my-2">
                     {(authPopup.authState === 'login') && <Login onClose={toggleOpenAuthDialog} />}

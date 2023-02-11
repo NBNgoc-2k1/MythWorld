@@ -7,7 +7,7 @@ import { useAuth } from '../../../hooks'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye,faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
-const Register = (props) => {
+const   Register = (props) => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [lastname, setLastname] = useState("");
