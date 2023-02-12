@@ -58,7 +58,7 @@ const ChangePassword = (props) => {
                             <p className="text-brown text-4xl min-[414px]:text-5xl">Change Password</p>
                             <div className="w-[20rem] min-[414px]:w-[22rem] rounded-3xl my-6 pb-6 bg-dark-silver flex flex-col items-center justify-center">
                                 <TextField
-                                    id="outlined-firstname-input"
+                                    id="outlined-password-input"
                                     label="Old Password"
                                     type="password"
                                     size="small"

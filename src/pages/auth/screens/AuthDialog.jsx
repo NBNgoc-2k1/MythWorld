@@ -41,7 +41,7 @@ const AuthDialog = () => {
                 </div>
                 <img className="max-lg:hidden lg:w-7/12 rounded-r-xl m-0"
                     src={auth_image}
-                    alt="god in auth"
+                    alt="web poster"
                 />
             </div>
         </div>

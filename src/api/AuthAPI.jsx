@@ -12,7 +12,7 @@ export async function RegisterAPI(newUser, password) {
     await createUserWithEmailAndPassword(authentication, newUser.userEmail, password).then((userAuth) => {
         // Update the newly created user with a display name and a picture
         updateProfile(userAuth.user, {
-            displayName: `${newUser.lastName} ${newUser.firstName}`,
+            displayName: `${newUser.fullName}`,
         })
         setDoc(doc(database, "users", userAuth.user.uid), newUser)
         LoginAPI(newUser.userEmail, password)

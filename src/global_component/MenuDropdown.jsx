@@ -73,10 +73,10 @@ const MenuDropdown = (props) => {
                     ></span>
                 </span>
                 {props.user && <div className="flex pl-2 py-2 border-b-white border-b-2 w-full">
-                    <Avatar {...stringAvatar(`${props.user.username}`)} className='my-4' />
+                    <Avatar {...stringAvatar(`${props.user.fullName}`)} className='my-4' />
                     <div className="flex flex-col text-base my-3 pl-2">
                         <p className="text-white "
-                        >{props.user.username}</p>
+                        >{props.user.fullName}</p>
                         <p className="text-white"
                         >{props.user.userEmail}</p>
                     </div>

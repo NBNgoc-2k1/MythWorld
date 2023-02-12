@@ -112,13 +112,13 @@ const Header = (props) => {
         <div className={`${props.user ? 'block' : 'hidden'} cursor-pointer py-2 mx-8`} onClick={() => {
           toggleDropdownMenu()
         }}>
-          {props.user && <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />}
+          {props.user && <Avatar {...stringAvatar(`${props.user.fullName}`)} className='my-3' />}
         </div>
       </div>
       <div className={`${props.user ? 'block' : 'hidden'} max-[414px]:block hidden cursor-pointer py-2 mx-8`} onClick={() => {
         toggleDropdownMenu()
       }}>
-        {props.user && <Avatar {...stringAvatar(`${props.user.lastName} ${props.user.firstName}`)} className='my-3' />}
+        {props.user && <Avatar {...stringAvatar(`${props.user.fullName}`)} className='my-3' />}
       </div>
       <div className={`${props.user ? 'block' : 'hidden'} max-[414px]:hidden block md:hidden cursor-pointer m-4`} onClick={() => {
         toggleDropdownMenu()

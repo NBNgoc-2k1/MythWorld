@@ -40,7 +40,7 @@ const Intro = (props) => {
             </div>
             <img className={`md:w-7/12`}
                 src={avt}
-                alt="blog avatar"
+                alt="intro image"
             />
         </div>
     )

@@ -10,21 +10,22 @@ import { faEye,faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 const   Register = (props) => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [firstname, setFirstname] = useState("");
+    const [fullname, setFullname] = useState("");
     const [authPopup, setAuthPopup] = useAuth()
     const [showPass, setShowPass] = useState(false)
 
-    const RegisterUser = (email, pass, lastname, firstname) => {
-        if (!isEmail(email) || pass.length < 8 || lastname === '' || firstname === '')
+    const RegisterUser = (email, pass, fullname) => {
+        if (!isEmail(email) || pass.length < 8 || fullname === '')
             return
         var newUser = {
             'userEmail': email,
-            'lastName': lastname,
-            'firstName': firstname,
-            'username': `${lastname} ${firstname}`,
+            'fullName': fullname,
             "blogs": [],
-            'bookmark':[]
+            'bookmark':[],
+            'address':'',
+            'phoneNumber':'',
+            'orders':[],
+            'favoriteProducts':[]
         }
         RegisterAPI(newUser, pass);
         props.onClose()
@@ -42,13 +43,12 @@ const   Register = (props) => {
         })
         setEmail('')
         setPass('')
-        setLastname('')
-        setFirstname('')
+        setFullname('')
     }
 
     window.addEventListener('keydown', (event) => {
         if (event.code === 'Enter') {
-            RegisterUser(email, pass, lastname, firstname)
+            RegisterUser(email, pass, fullname)
         }
     })
 
@@ -75,29 +75,16 @@ const   Register = (props) => {
             </div>
             <div className="w-72 m-auto">
                 <TextField
-                    id="outlined-firstname-input"
-                    label="Firstname"
+                    id="outlined-fullname-input"
+                    label="Fullname"
                     type="text"
                     fullWidth
                     margin='normal'
                     size="small"
-                    value={firstname}
-                    onChange={(event) => setFirstname(event.target.value)}
-                    error={firstname === ""}
-                    helperText={firstname === "" ? "Invalid firstname!" : " "}
-
-                />
-                <TextField
-                    id="outlined-lastname-input"
-                    label="Lastname"
-                    type="text"
-                    size="small"
-                    fullWidth
-                    margin='normal'
-                    value={lastname}
-                    onChange={(event) => setLastname(event.target.value)}
-                    error={lastname === ""}
-                    helperText={lastname === "" ? "Invalid lastname!" : " "}
+                    value={fullname}
+                    onChange={(event) => setFullname(event.target.value)}
+                    error={fullname === ""}
+                    helperText={fullname === "" ? "Invalid fullname!" : " "}
 
                 />
                 <TextField
@@ -135,7 +122,7 @@ const   Register = (props) => {
                 </FormControl>
             </div>
             <AppButton content="Register" onClick={() => {
-                RegisterUser(email, pass, lastname, firstname)
+                RegisterUser(email, pass, fullname)
             }} />
         </div>
     )
