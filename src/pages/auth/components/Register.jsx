@@ -15,8 +15,6 @@ const   Register = (props) => {
     const [showPass, setShowPass] = useState(false)
 
     const RegisterUser = (email, pass, fullname) => {
-        if (!isEmail(email) || pass.length < 8 || fullname === '')
-            return
         var newUser = {
             'userEmail': email,
             'fullName': fullname,
@@ -122,7 +120,7 @@ const   Register = (props) => {
                     />
                 </FormControl>
             </div>
-            <AppButton content="Register" onClick={() => {
+            <AppButton content="Register" disabled={!isEmail(email) || pass.length < 8 || fullname === ''} onClick={() => {
                 RegisterUser(email, pass, fullname)
             }} />
         </div>
