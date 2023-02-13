@@ -79,6 +79,7 @@ const   Register = (props) => {
                     label="Fullname"
                     type="text"
                     fullWidth
+                    placeholder='e.g. John Wick'
                     margin='normal'
                     size="small"
                     value={fullname}
