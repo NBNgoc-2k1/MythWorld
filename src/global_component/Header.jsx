@@ -1,5 +1,5 @@
 import logo from '../assets/images/global_images/logo.png'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom';
 import AppButton from './AppButton';
 import { useAuth } from '../hooks'
@@ -62,6 +62,10 @@ const Header = (props) => {
     setShowProfileMenu(!showProfileMenu)
   }
 
+  useEffect(() => {
+    console.log(location.pathname);
+},[location])
+
   return (
     <header className="bg-brown sticky shadow-md shadow-dark-grey top-0 flex justify-around px-0 z-20
       md:justify-between 
@@ -77,7 +81,7 @@ const Header = (props) => {
           className="w-16 h-16 mt-1.5 mx-2"
         />
         <p className={`${!props.user && 'max-[414px]:hidden'} nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline`}>
-          Mysticala
+          Mythicala
         </p>
       </div>
       <div className="hidden md:flex">

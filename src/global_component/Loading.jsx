@@ -10,7 +10,7 @@ const Loading = () => {
                 className="rotate h-auto"
             />
             <p className="text-brown m-auto text-3xl sm:text-5xl"
-            >Entering Myth World ...</p>
+            >Entering Mythicala ...</p>
         </div>
     )
 }

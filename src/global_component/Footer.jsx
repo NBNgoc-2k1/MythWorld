@@ -14,7 +14,7 @@ const Footer = () => {
             <div className='max-[414px]:flex hidden w-full items-end justify-between my-4 '>
                 <div className="flex flex-col">
                     <p className="text-footer"
-                    >Myth World</p>
+                    >Mythicala</p>
                     <div className="flex justify-start md:justify-between">
                         <IconButton icon={faFacebookSquare}
                             className='ml-3 md:m-0'
@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
             <div className="max-[414px]:hidden flex flex-col">
                 <p className="text-footer"
-                >Myth World</p>
+                >Mythicala</p>
                 <div className="flex justify-start md:justify-between">
                     <IconButton icon={faFacebookSquare}
                         className='ml-3 md:m-0'

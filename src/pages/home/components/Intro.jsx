@@ -35,7 +35,7 @@ const Intro = (props) => {
                     xl:w-2/3
                     md:w-5/6
                 ">
-                    Mysticala - the convergence of mysteries from all over the world. Sign up today to share your story with the world.                </p>
+                    Mythicala - the convergence of mysteries from all over the world. Sign up today to share your story with the world.                </p>
                 {!props.user && <AppButton content="Login/Register" onClick={toggleOpenAuthDialog} />}
             </div>
             <img className={`md:w-7/12`}

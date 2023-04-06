@@ -1,5 +1,3 @@
-import { faUserLock } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import AppButton from '../../../global_component/AppButton'
 import { useAuth } from '../../../hooks'
@@ -23,7 +21,7 @@ const RequiredAuth = () => {
                 <p className="text-brown max-lg:mx-auto text-xl sm:text-3xl xl:text-4xl">AUTHENTICATION REQUIRED PAGE</p>
                 <p className="max-sm:hidden max-lg:mx-auto w-8/12 my-8 text-lg max-lg:text-center min-[414px]:text-xl lg:max-w-4xl leading-relaxed">
                     This page contains information or benefits that require a MythWorld account.
-                    So please login or register to experience. <br/> Sincere thanks to everyone's contributions to Myth World
+                    So please login or register to experience. <br/> Sincere thanks to everyone's contributions to Mythicala
                 </p>
                 <AppButton content="Login/Register" className='max-lg:mx-auto' onClick={() => {
                     setAuthPopup((previousState) => {
