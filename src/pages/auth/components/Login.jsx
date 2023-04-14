@@ -13,8 +13,6 @@ const Login = (props) => {
     const [authPopup, setAuthPopup] = useAuth()
     const [showPass, setShowPass] = useState(false)
 
-
-
     function toggleShowPass() {
         setShowPass(!showPass)
     }
@@ -65,6 +63,7 @@ const Login = (props) => {
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
+                        value={pass}
                         type={showPass ? 'text' : 'password'}
                         onChange={(event) => setPass(event.target.value)}
                         endAdornment={
