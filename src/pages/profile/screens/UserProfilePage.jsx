@@ -114,6 +114,7 @@ const UserProfilePage = (props) => {
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                                 margin="normal"
+                                
                                 variant="standard"
                                 inputProps={{ style: { fontSize: 20 } }}
                                 InputLabelProps={{ style: { fontSize: 20 } }}
@@ -123,6 +124,9 @@ const UserProfilePage = (props) => {
                                 id="outlined-phone-input"
                                 label="Phone number"
                                 type="tel"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                                 margin='normal'
                                 size="small"
                                 inputProps={{ style: { fontSize: 20 } }}
@@ -135,6 +139,9 @@ const UserProfilePage = (props) => {
                             <TextField
                                 id="outlined-address-input"
                                 label="Address"
+                                InputProps={{
+                                    readOnly: true,
+                                }}
                                 type="text"
                                 size="small"
                                 margin='normal'
