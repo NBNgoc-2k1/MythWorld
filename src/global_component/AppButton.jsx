@@ -16,7 +16,7 @@ const AppButton = (props) => {
             >{props.content}</p>
             {
                 props.icon && (
-                    <FontAwesomeIcon icon={props.icon} className={`${props.iconClassName} ml-3 text-xl mt-3 lg:text-2xl lg:mt-4 ${props.disabled ? 'text-dark-grey' : 'text-white'}`}/>
+                    <FontAwesomeIcon icon={props.icon} className={`${props.iconClassName} ml-3 text-xl mt-2 lg:text-2xl lg:mt-4 ${props.disabled ? 'text-dark-grey' : 'text-white'}`}/>
                 )
             }
         </div>

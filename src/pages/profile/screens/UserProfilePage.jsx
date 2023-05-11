@@ -57,8 +57,6 @@ const UpdateUserInfo = (currentUser, email, fullName, address, phoneNumber, setF
             })
         })
     })
-
-
 }
 
 const UserProfilePage = (props) => {

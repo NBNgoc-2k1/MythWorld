@@ -125,7 +125,7 @@ const Blogs = () => {
                         <IconButton icon={faFilter} className="my-4 text-teal relative" iconClass="text-3xl"
                             onClick={toggleFilter}
                         />
-                        <SortDropdown handleSort={SortBlogs} data={[...allBlogs]} />
+                        <SortDropdown handleSort={SortBlogs} data={[...filteredBlogs]} />
                     </div>
                     <Dialog open={showFilter} onClose={toggleFilter}>
                         <DialogContent>
@@ -138,7 +138,7 @@ const Blogs = () => {
                             }
                         </DialogContent>
                         <DialogActions>
-                            <AppButton content="restart" className="bg-dark-grey" onClick={() => {
+                            <AppButton content="restart" className="!bg-dark-grey" onClick={() => {
                                 ResetFilter()
                                 toggleFilter()
                                 ResetFilter()
