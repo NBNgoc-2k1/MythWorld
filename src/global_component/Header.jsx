@@ -62,17 +62,13 @@ const Header = (props) => {
     setShowProfileMenu(!showProfileMenu)
   }
 
-  useEffect(() => {
-    console.log(location.pathname);
-},[location])
-
   return (
     <header className="bg-brown sticky shadow-md shadow-dark-grey top-0 flex justify-around px-0 z-20
       md:justify-between 
       lg:pl-10 
       max-[414px]:justify-between
       ">
-      <div className="flex my-2 cursor-default
+      <NavLink to='/' className="flex my-2 cursor-pointer
       "
       >
         <img
@@ -83,7 +79,7 @@ const Header = (props) => {
         <p className={`${!props.user && 'max-[414px]:hidden'} nav-item px-0 pt-3.5 md:pt-4 select-none hover:no-underline`}>
           Mythicala
         </p>
-      </div>
+      </NavLink>
       <div className="hidden md:flex">
         <NavLink className={`nav-item ${(location.pathname === '/') && 'bg-teal'}`} to="/"
           onClick={() => {
